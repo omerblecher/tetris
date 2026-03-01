@@ -29,7 +29,15 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Complete rows are cleared, rows above fall down, and score updates correctly: 100/300/500/800 × level for 1/2/3/4 lines; level increases every 10 lines
   4. Game over is correctly detected when a newly spawned piece cannot be placed; the engine can be reset and restarted
   5. Canvas renders the board at 60fps using `shadowBlur`/`shadowColor` for neon glow; game state lives in `useRef` (not React state); loop uses `requestAnimationFrame` with delta-time (not `setInterval`)
-**Plans**: TBD
+**Plans**: 6 plans
+
+Plans:
+- [ ] 01-01-PLAN.md — Project scaffold + types + SRS wall kick tables (Wave 1)
+- [ ] 01-02-PLAN.md — TDD: Board (collision, line clear, perfect clear) + Bag (7-bag randomizer) (Wave 2)
+- [ ] 01-03-PLAN.md — TDD: Scorer (all Guideline scoring formulas, level/gravity) (Wave 2)
+- [ ] 01-04-PLAN.md — Piece + LockDelay + TetrisEngine assembly (Wave 3)
+- [ ] 01-05-PLAN.md — CanvasRenderer (offscreen glow) + useGameEngine hook + GameBoard component (Wave 4)
+- [ ] 01-06-PLAN.md — Human verification checkpoint (Wave 5)
 
 ### Phase 2: React Shell + Visual Polish
 **Goal**: A fully playable Tetris game in the browser with neon/glow aesthetic, responsive layout that works on desktop and mobile, and touch controls — no backend required
