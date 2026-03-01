@@ -117,20 +117,58 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| ENG-01 through ENG-11 | Phase 1 | Pending |
-| SCR-01 through SCR-06 | Phase 1 | Pending |
-| VIS-01 through VIS-06 | Phase 2 | Pending |
-| CTR-01 through CTR-05 | Phase 2 | Pending |
-| LAY-01 through LAY-04 | Phase 2 | Pending |
-| AUTH-01 through AUTH-05 | Phase 3 | Pending |
-| LDB-01 through LDB-05 | Phase 3 | Pending |
-| DEV-01 through DEV-04 | Phase 4 | Pending |
+| ENG-01 | Phase 1 | Pending |
+| ENG-02 | Phase 1 | Pending |
+| ENG-03 | Phase 1 | Pending |
+| ENG-04 | Phase 1 | Pending |
+| ENG-05 | Phase 1 | Pending |
+| ENG-06 | Phase 1 | Pending |
+| ENG-07 | Phase 1 | Pending |
+| ENG-08 | Phase 1 | Pending |
+| ENG-09 | Phase 1 | Pending |
+| ENG-10 | Phase 1 | Pending |
+| ENG-11 | Phase 1 | Pending |
+| SCR-01 | Phase 1 | Pending |
+| SCR-02 | Phase 1 | Pending |
+| SCR-03 | Phase 1 | Pending |
+| SCR-04 | Phase 1 | Pending |
+| SCR-05 | Phase 1 | Pending |
+| SCR-06 | Phase 1 | Pending |
+| VIS-01 | Phase 2 | Pending |
+| VIS-02 | Phase 2 | Pending |
+| VIS-03 | Phase 2 | Pending |
+| VIS-04 | Phase 2 | Pending |
+| VIS-05 | Phase 2 | Pending |
+| VIS-06 | Phase 2 | Pending |
+| CTR-01 | Phase 2 | Pending |
+| CTR-02 | Phase 2 | Pending |
+| CTR-03 | Phase 2 | Pending |
+| CTR-04 | Phase 2 | Pending |
+| CTR-05 | Phase 2 | Pending |
+| LAY-01 | Phase 2 | Pending |
+| LAY-02 | Phase 2 | Pending |
+| LAY-03 | Phase 2 | Pending |
+| LAY-04 | Phase 2 | Pending |
+| AUTH-01 | Phase 3 | Pending |
+| AUTH-02 | Phase 3 | Pending |
+| AUTH-03 | Phase 3 | Pending |
+| AUTH-04 | Phase 3 | Pending |
+| AUTH-05 | Phase 3 | Pending |
+| LDB-01 | Phase 3 | Pending |
+| LDB-02 | Phase 3 | Pending |
+| LDB-03 | Phase 3 | Pending |
+| LDB-04 | Phase 3 | Pending |
+| LDB-05 | Phase 3 | Pending |
+| DEV-01 | Phase 4 | Pending |
+| DEV-02 | Phase 4 | Pending |
+| DEV-03 | Phase 4 | Pending |
+| DEV-04 | Phase 4 | Pending |
 
 **Coverage:**
-- v1 requirements: 37 total
-- Mapped to phases: 37
+- v1 requirements: 46 total
+- Mapped to phases: 46
 - Unmapped: 0 ✓
 
 ---
 *Requirements defined: 2026-03-01*
-*Last updated: 2026-03-01 after initial definition*
+*Last updated: 2026-03-01 after roadmap creation — traceability expanded to individual requirement IDs; count corrected to 46*
