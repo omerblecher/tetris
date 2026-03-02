@@ -2,6 +2,7 @@
 import { RefObject } from 'react';
 import { TetrisEngine } from '../engine/TetrisEngine';
 import { useKeyboard } from '../hooks/useKeyboard';
+import { useTouchControls } from '../hooks/useTouchControls';
 
 interface GameBoardProps {
   canvasRef: RefObject<HTMLCanvasElement | null>;
@@ -13,6 +14,7 @@ interface GameBoardProps {
 
 export function GameBoard({ canvasRef, engineRef, isGameOver, onRestart, onTogglePause: _onTogglePause }: GameBoardProps) {
   useKeyboard(engineRef);
+  useTouchControls(canvasRef, engineRef);
 
   return (
     <div style={{ position: 'relative', display: 'inline-block' }}>
