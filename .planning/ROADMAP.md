@@ -12,7 +12,7 @@ Four phases built in strict dependency order. Phase 1 locks in the non-recoverab
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Core Game Engine** - Pure TypeScript game engine with SRS rotation, collision, scoring, and Canvas rendering architecture locked in
+- [x] **Phase 1: Core Game Engine** - Pure TypeScript game engine with SRS rotation, collision, scoring, and Canvas rendering architecture locked in
 - [ ] **Phase 2: React Shell + Visual Polish** - Playable game in browser with neon aesthetic, responsive layout, and mobile touch controls
 - [ ] **Phase 3: Firebase Auth + Leaderboard** - Google login, Firestore leaderboard with hardened security rules, personal best tracking
 - [ ] **Phase 4: Deployment + Developer Setup** - Vercel/Netlify deploy, CLAUDE.md, GitHub commit/push automation, final polish
@@ -38,7 +38,7 @@ Plans:
 - [x] 01-04-PLAN.md — Piece + LockDelay + TetrisEngine assembly (Wave 3)
 - [x] 01-05-PLAN.md — CanvasRenderer (offscreen glow) + useGameEngine hook + GameBoard component (Wave 4)
 - [x] 01-07-PLAN.md — Gap closure: ENG-09 next-piece preview panel (Wave 5)
-- [ ] 01-06-PLAN.md — Human verification checkpoint (Wave 5)
+- [x] 01-06-PLAN.md — Human verification checkpoint (Wave 5)
 
 ### Phase 2: React Shell + Visual Polish
 **Goal**: A fully playable Tetris game in the browser with neon/glow aesthetic, responsive layout that works on desktop and mobile, and touch controls — no backend required
@@ -82,7 +82,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Core Game Engine | 6/7 | In Progress|  |
+| 1. Core Game Engine | 7/7 | Complete | 2026-03-02 |
 | 2. React Shell + Visual Polish | 0/TBD | Not started | - |
 | 3. Firebase Auth + Leaderboard | 0/TBD | Not started | - |
 | 4. Deployment + Developer Setup | 0/TBD | Not started | - |

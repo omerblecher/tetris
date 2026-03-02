@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-03-01)
 
 **Core value:** A beautiful, playable Tetris experience with a real global leaderboard — the neon aesthetic and smooth gameplay make it worth coming back to.
-**Current focus:** Phase 1 — Core Game Engine
+**Current focus:** Phase 2 — React Shell + Visual Polish
 
 ## Current Position
 
-Phase: 1 of 4 (Core Game Engine)
-Plan: 7 of TBD in current phase
-Status: In progress
-Last activity: 2026-03-02 — Completed 01-07: Next-piece preview panel (ENG-09) — nextPieces in DisplayState, NEXT panel in GameBoard
+Phase: 2 of 4 (React Shell + Visual Polish)
+Plan: 0 of TBD in current phase
+Status: Phase 1 complete — ready for Phase 2 planning
+Last activity: 2026-03-02 — Phase 1 complete: human verified, 17/17 requirements satisfied, VERIFICATION.md passed
 
-Progress: [████░░░░░░] 28%
+Progress: [██░░░░░░░░] 25%
 
 ## Performance Metrics
 
