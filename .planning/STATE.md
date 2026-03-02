@@ -10,28 +10,28 @@ See: .planning/PROJECT.md (updated 2026-03-01)
 ## Current Position
 
 Phase: 1 of 4 (Core Game Engine)
-Plan: 5 of TBD in current phase
+Plan: 7 of TBD in current phase
 Status: In progress
-Last activity: 2026-03-02 — Completed 01-05: Canvas renderer with OffscreenCanvas neon glow, useGameEngine hook, GameBoard component
+Last activity: 2026-03-02 — Completed 01-07: Next-piece preview panel (ENG-09) — nextPieces in DisplayState, NEXT panel in GameBoard
 
-Progress: [████░░░░░░] 25%
+Progress: [████░░░░░░] 28%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 5
-- Average duration: 6.8 min
-- Total execution time: 0.57 hours
+- Total plans completed: 7
+- Average duration: 5.7 min
+- Total execution time: ~0.67 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| Phase 1 | 5 completed | ~34 min | ~6.8 min |
+| Phase 1 | 7 completed | ~40 min | ~5.7 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (6 min), 01-02 (6 min est.), 01-03 (7 min), 01-04 (8 min), 01-05 (7 min)
-- Trend: consistent ~6-8 min per plan
+- Last 7 plans: 01-01 (6 min), 01-02 (6 min est.), 01-03 (7 min), 01-04 (8 min), 01-05 (7 min), 01-06 (4 min est.), 01-07 (2 min)
+- Trend: consistent ~2-8 min per plan
 
 *Updated after each plan completion*
 
@@ -60,6 +60,9 @@ Recent decisions affecting current work:
 - [01-05]: shadowBlur set only in offscreen.ts preRenderPiece() — never on main canvas at render time (GPU paint cost at 60fps with 200 cells)
 - [01-05]: useEffect empty deps array for engine/renderer — created once per mount, never recreated on re-render
 - [01-05]: Ghost piece uses globalAlpha=0.25 with same pre-rendered texture — no separate ghost-colored texture needed
+- [01-07]: onPieceLock used (not onScoreUpdate) to refresh nextPieces — fires immediately on lock before score update; semantically correct
+- [01-07]: nextPieces seeded synchronously after engine construction before rAF starts — avoids blank NEXT panel on mount
+- [01-07]: restart() must re-read engine.state.nextPieces after reset() — keeps preview consistent on game restart
 
 ### Pending Todos
 
@@ -73,5 +76,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-02
-Stopped at: Completed 01-05-PLAN.md — offscreen pre-rendering (01a58af), useGameEngine + GameBoard (5edd8f4). Game visually playable in browser at 60fps.
+Stopped at: Completed 01-07-PLAN.md — next-piece preview panel ENG-09 (08c48f7). NEXT panel with 3 neon-colored blocks visible in UI, updates on piece lock.
 Resume file: None

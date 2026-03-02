@@ -29,7 +29,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Complete rows are cleared, rows above fall down, and score updates correctly: 100/300/500/800 × level for 1/2/3/4 lines; level increases every 10 lines
   4. Game over is correctly detected when a newly spawned piece cannot be placed; the engine can be reset and restarted
   5. Canvas renders the board at 60fps using `shadowBlur`/`shadowColor` for neon glow; game state lives in `useRef` (not React state); loop uses `requestAnimationFrame` with delta-time (not `setInterval`)
-**Plans**: 6 plans
+**Plans**: 7 plans
 
 Plans:
 - [x] 01-01-PLAN.md — Project scaffold + types + SRS wall kick tables (Wave 1)
@@ -37,6 +37,7 @@ Plans:
 - [x] 01-03-PLAN.md — TDD: Scorer (all Guideline scoring formulas, level/gravity) (Wave 2)
 - [x] 01-04-PLAN.md — Piece + LockDelay + TetrisEngine assembly (Wave 3)
 - [x] 01-05-PLAN.md — CanvasRenderer (offscreen glow) + useGameEngine hook + GameBoard component (Wave 4)
+- [x] 01-07-PLAN.md — Gap closure: ENG-09 next-piece preview panel (Wave 5)
 - [ ] 01-06-PLAN.md — Human verification checkpoint (Wave 5)
 
 ### Phase 2: React Shell + Visual Polish
@@ -81,7 +82,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Core Game Engine | 5/6 | In Progress|  |
+| 1. Core Game Engine | 6/7 | In Progress|  |
 | 2. React Shell + Visual Polish | 0/TBD | Not started | - |
 | 3. Firebase Auth + Leaderboard | 0/TBD | Not started | - |
 | 4. Deployment + Developer Setup | 0/TBD | Not started | - |
