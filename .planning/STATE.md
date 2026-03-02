@@ -10,28 +10,28 @@ See: .planning/PROJECT.md (updated 2026-03-01)
 ## Current Position
 
 Phase: 1 of 4 (Core Game Engine)
-Plan: 3 of TBD in current phase
+Plan: 4 of TBD in current phase
 Status: In progress
-Last activity: 2026-03-02 — Completed 01-03: Scorer module (TDD) — full Guideline scoring
+Last activity: 2026-03-02 — Completed 01-04: TetrisEngine with window.game console API (Piece, LockDelay, full game loop)
 
-Progress: [██░░░░░░░░] 15%
+Progress: [███░░░░░░░] 20%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 3
-- Average duration: 6.3 min
-- Total execution time: 0.3 hours
+- Total plans completed: 4
+- Average duration: 6.8 min
+- Total execution time: 0.45 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| Phase 1 | 3 completed | ~19 min | ~6.3 min |
+| Phase 1 | 4 completed | ~27 min | ~6.8 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (6 min), 01-02 (6 min est.), 01-03 (7 min)
-- Trend: consistent ~6-7 min per plan
+- Last 5 plans: 01-01 (6 min), 01-02 (6 min est.), 01-03 (7 min), 01-04 (8 min)
+- Trend: consistent ~6-8 min per plan
 
 *Updated after each plan completion*
 
@@ -54,6 +54,9 @@ Recent decisions affecting current work:
 - [01-03]: Guideline gravity formula at level 1 produces 1000ms (not 800ms) — `(0.8)^0 = 1.0s`. Plan spec had erroneous test expectations; formula itself is correct per tetris.wiki.
 - [01-03]: Scorer tests isolate B2B from combo by setting `b2bActive` directly — cleaner than sequential clears that trigger both modifiers simultaneously.
 - [01-03]: Perfect clear uses level-scaled Guideline values (PC_SCORES: 800/1200/1800/2000 × level; B2B Tetris PC: 3200 × level) rather than flat 3500 placeholder.
+- [Phase 01-04]: Gravity accumulator freezes while LockDelay is active — prevents double-locking when piece hits floor mid-accumulation tick
+- [Phase 01-04]: T-spin center at (col+1, row+1) — matches 3x3 T-piece bounding box with 3-corner rule and 5th-kick full promotion
+- [Phase 01-04]: window.game rAF loop capped at dt=100ms to prevent spiral-of-death on tab blur/resume
 
 ### Pending Todos
 
@@ -67,5 +70,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-02
-Stopped at: Completed 01-02-PLAN.md — Board (TDD) and Bag tests. Board RED: b3eb4a0, Board GREEN: cfba0a9, Bag tests: c2bfa7b. Note: 01-03 (Scorer) was already committed in a prior partial run.
+Stopped at: Completed 01-04-PLAN.md — Piece (f995973), TetrisEngine + window.game (2c8e9da). Full engine playable from browser console.
 Resume file: None

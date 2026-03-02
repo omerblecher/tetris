@@ -9,14 +9,14 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Game Engine
 
-- [ ] **ENG-01**: Player can move pieces left, right, and down using keyboard arrow keys
+- [x] **ENG-01**: Player can move pieces left, right, and down using keyboard arrow keys
 - [x] **ENG-02**: Player can rotate pieces clockwise and counter-clockwise using keyboard (Up = CW, Z/Ctrl = CCW)
 - [x] **ENG-03**: All 7 standard tetrominoes (I, O, T, S, Z, J, L) spawn and rotate using Super Rotation System (SRS) with wall kicks
-- [ ] **ENG-04**: Pieces fall automatically; fall speed increases with level (gravity)
-- [ ] **ENG-05**: Player can hard drop (spacebar) to instantly place piece at lowest valid position
-- [ ] **ENG-06**: Player can soft drop (hold down arrow) to accelerate piece fall
-- [ ] **ENG-07**: Ghost piece shows semi-transparent preview of where current piece will land
-- [ ] **ENG-08**: Player can hold the current piece (C key / hold button) and swap with held piece once per drop
+- [x] **ENG-04**: Pieces fall automatically; fall speed increases with level (gravity)
+- [x] **ENG-05**: Player can hard drop (spacebar) to instantly place piece at lowest valid position
+- [x] **ENG-06**: Player can soft drop (hold down arrow) to accelerate piece fall
+- [x] **ENG-07**: Ghost piece shows semi-transparent preview of where current piece will land
+- [x] **ENG-08**: Player can hold the current piece (C key / hold button) and swap with held piece once per drop
 - [x] **ENG-09**: Game displays next 3 upcoming pieces in a preview panel
 - [x] **ENG-10**: Collision detection prevents pieces from moving through walls, floor, or locked cells
 - [x] **ENG-11**: Game detects and handles game over when a newly spawned piece cannot be placed (board is full)
@@ -117,14 +117,14 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| ENG-01 | Phase 1 | Pending |
+| ENG-01 | Phase 1 | Complete |
 | ENG-02 | Phase 1 | Complete |
 | ENG-03 | Phase 1 | Complete |
-| ENG-04 | Phase 1 | Pending |
-| ENG-05 | Phase 1 | Pending |
-| ENG-06 | Phase 1 | Pending |
-| ENG-07 | Phase 1 | Pending |
-| ENG-08 | Phase 1 | Pending |
+| ENG-04 | Phase 1 | Complete |
+| ENG-05 | Phase 1 | Complete |
+| ENG-06 | Phase 1 | Complete |
+| ENG-07 | Phase 1 | Complete |
+| ENG-08 | Phase 1 | Complete |
 | ENG-09 | Phase 1 | Complete |
 | ENG-10 | Phase 1 | Complete |
 | ENG-11 | Phase 1 | Complete |
