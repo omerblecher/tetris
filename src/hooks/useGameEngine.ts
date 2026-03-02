@@ -4,12 +4,30 @@ import { TetrisEngine } from '../engine/TetrisEngine';
 import { CanvasRenderer } from '../renderer/CanvasRenderer';
 import { PieceType } from '../engine/types';
 
+const BEST_SCORE_KEY = 'tetris_best';
+
+function loadBestScore(): number {
+  return parseInt(localStorage.getItem(BEST_SCORE_KEY) ?? '0', 10) || 0;
+}
+
+function saveBestScore(score: number): number {
+  const current = loadBestScore();
+  if (score > current) {
+    localStorage.setItem(BEST_SCORE_KEY, String(score));
+    return score;
+  }
+  return current;
+}
+
 interface DisplayState {
   score: number;
   level: number;
   lines: number;
   isGameOver: boolean;
   nextPieces: PieceType[];
+  heldPiece: PieceType | null;
+  bestScore: number;
+  isPaused: boolean;
 }
 
 export function useGameEngine(canvasRef: RefObject<HTMLCanvasElement | null>) {
@@ -24,6 +42,9 @@ export function useGameEngine(canvasRef: RefObject<HTMLCanvasElement | null>) {
     lines: 0,
     isGameOver: false,
     nextPieces: [],
+    heldPiece: null,
+    bestScore: loadBestScore(),
+    isPaused: false,
   });
 
   useEffect(() => {
@@ -69,10 +90,20 @@ export function useGameEngine(canvasRef: RefObject<HTMLCanvasElement | null>) {
       setDisplayState(prev => ({ ...prev, level: _level }));
     });
     engine.on('onScoreUpdate', (score, level, lines) => {
-      setDisplayState(prev => ({ ...prev, score, level, lines }));
+      setDisplayState(prev => ({
+        ...prev,
+        score,
+        level,
+        lines,
+        isPaused: engineRef.current?.isPaused ?? false,
+      }));
+    });
+    engine.on('onHold', (heldType, _swappedFrom) => {
+      setDisplayState(prev => ({ ...prev, heldPiece: heldType }));
     });
     engine.on('onGameOver', (finalScore) => {
-      setDisplayState(prev => ({ ...prev, score: finalScore, isGameOver: true }));
+      const best = saveBestScore(finalScore);
+      setDisplayState(prev => ({ ...prev, score: finalScore, isGameOver: true, bestScore: best }));
     });
 
     // Expose engine globally for console testing
@@ -112,8 +143,18 @@ export function useGameEngine(canvasRef: RefObject<HTMLCanvasElement | null>) {
       lines: 0,
       isGameOver: false,
       nextPieces: engineRef.current?.state.nextPieces ?? [],
+      heldPiece: null,
+      bestScore: loadBestScore(),
+      isPaused: false,
     });
   };
 
-  return { engineRef, rendererRef, displayState, restart };
+  const togglePause = () => {
+    const engine = engineRef.current;
+    if (!engine) return;
+    engine.isPaused ? engine.resume() : engine.pause();
+    setDisplayState(prev => ({ ...prev, isPaused: !prev.isPaused }));
+  };
+
+  return { engineRef, rendererRef, displayState, restart, togglePause };
 }
