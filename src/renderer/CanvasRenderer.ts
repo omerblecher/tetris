@@ -3,8 +3,19 @@ import { GameState, PieceSnapshot } from '../engine/types';
 import { CELL_SIZE, COLS, ROWS } from '../engine/constants';
 import { initTextures, getTexture, getTextureForCell, getGhostTexture } from './offscreen';
 
+type AnimationType = 'lineClear' | 'lockFlash' | 'levelUp';
+
+interface AnimationState {
+  type: AnimationType;
+  elapsed: number;
+  duration: number;
+  rows?: number[];             // lineClear: which rows to flash
+  cells?: [number, number][];  // lockFlash: mino [col, row] positions
+}
+
 export class CanvasRenderer {
   private ctx: CanvasRenderingContext2D;
+  private animations: AnimationState[] = [];
 
   constructor(private canvas: HTMLCanvasElement) {
     this.ctx = canvas.getContext('2d')!;
@@ -15,8 +26,26 @@ export class CanvasRenderer {
     initTextures();
   }
 
-  render(state: GameState): void {
+  triggerLineClear(rows: number[]): void {
+    this.animations.push({ type: 'lineClear', elapsed: 0, duration: 100, rows });
+  }
+
+  triggerLockFlash(cells: [number, number][]): void {
+    this.animations.push({ type: 'lockFlash', elapsed: 0, duration: 50, cells });
+  }
+
+  triggerLevelUp(): void {
+    this.animations.push({ type: 'levelUp', elapsed: 0, duration: 300 });
+  }
+
+  render(state: GameState, dt: number): void {
     const { ctx } = this;
+
+    // Advance and prune animations before clearing
+    this.animations = this.animations.filter(a => {
+      a.elapsed += dt;
+      return a.elapsed < a.duration;
+    });
 
     // Clear canvas each frame
     ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -47,7 +76,17 @@ export class CanvasRenderer {
       this.drawPiece(state.activePiece, false);
     }
 
-    // 5. Game over overlay
+    // 5. Draw animation overlays (after game elements, before game-over overlay)
+    for (const anim of this.animations) {
+      const progress = anim.elapsed / anim.duration; // 0.0 → 1.0
+      switch (anim.type) {
+        case 'lineClear': this.drawLineClearFlash(anim.rows!, progress); break;
+        case 'lockFlash': this.drawLockFlash(anim.cells!, progress); break;
+        case 'levelUp':   this.drawLevelUpFlash(progress); break;
+      }
+    }
+
+    // 6. Game over overlay
     if (state.isGameOver) {
       this.drawGameOverOverlay();
     }
@@ -86,6 +125,33 @@ export class CanvasRenderer {
       }
     });
     ctx.globalAlpha = 1.0;
+  }
+
+  private drawLineClearFlash(rows: number[], progress: number): void {
+    const { ctx } = this;
+    const alpha = (1 - progress) * 0.85; // fade out from 0.85 to 0
+    ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+    rows.forEach(r => {
+      ctx.fillRect(0, r * CELL_SIZE, COLS * CELL_SIZE, CELL_SIZE);
+    });
+  }
+
+  private drawLockFlash(cells: [number, number][], progress: number): void {
+    const { ctx } = this;
+    const alpha = (1 - progress) * 0.7; // fade out from 0.7 to 0
+    ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+    cells.forEach(([c, r]) => {
+      if (r >= 0 && r < ROWS && c >= 0 && c < COLS) {
+        ctx.fillRect(c * CELL_SIZE, r * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+      }
+    });
+  }
+
+  private drawLevelUpFlash(progress: number): void {
+    const { ctx } = this;
+    const alpha = Math.sin(progress * Math.PI) * 0.4; // pulse in then out
+    ctx.fillStyle = `rgba(255, 200, 255, ${alpha})`;
+    ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
   }
 
   private drawGameOverOverlay(): void {
