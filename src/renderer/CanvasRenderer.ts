@@ -17,11 +17,20 @@ export class CanvasRenderer {
   private ctx: CanvasRenderingContext2D;
   private animations: AnimationState[] = [];
 
-  constructor(private canvas: HTMLCanvasElement) {
+  constructor(canvas: HTMLCanvasElement) {
     this.ctx = canvas.getContext('2d')!;
-    // Set canvas dimensions
-    canvas.width = COLS * CELL_SIZE;
-    canvas.height = ROWS * CELL_SIZE;
+
+    // DPR scaling: canvas drawing buffer matches physical pixels
+    const dpr = window.devicePixelRatio || 1;
+    // Set drawing buffer to physical pixels
+    canvas.width = COLS * CELL_SIZE * dpr;
+    canvas.height = ROWS * CELL_SIZE * dpr;
+    // CSS dimensions stay at logical pixels (canvas scales via CSS aspect-ratio)
+    canvas.style.width = `${COLS * CELL_SIZE}px`;
+    canvas.style.height = `${ROWS * CELL_SIZE}px`;
+    // Scale all subsequent draw calls to use logical pixels
+    this.ctx.scale(dpr, dpr);
+
     // Initialize textures once
     initTextures();
   }
@@ -47,8 +56,8 @@ export class CanvasRenderer {
       return a.elapsed < a.duration;
     });
 
-    // Clear canvas each frame
-    ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    // Clear canvas each frame using logical dimensions (ctx is already scaled by dpr)
+    ctx.clearRect(0, 0, COLS * CELL_SIZE, ROWS * CELL_SIZE);
 
     // 1. Draw subtle grid (optional background grid lines)
     this.drawGrid();
@@ -151,17 +160,19 @@ export class CanvasRenderer {
     const { ctx } = this;
     const alpha = Math.sin(progress * Math.PI) * 0.4; // pulse in then out
     ctx.fillStyle = `rgba(255, 200, 255, ${alpha})`;
-    ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+    // Use logical dimensions — ctx is already scaled by dpr
+    ctx.fillRect(0, 0, COLS * CELL_SIZE, ROWS * CELL_SIZE);
   }
 
   private drawGameOverOverlay(): void {
     const { ctx } = this;
     ctx.fillStyle = 'rgba(0, 0, 0, 0.6)';
-    ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+    // Use logical dimensions — ctx is already scaled by dpr
+    ctx.fillRect(0, 0, COLS * CELL_SIZE, ROWS * CELL_SIZE);
     ctx.fillStyle = '#ff4444';
     ctx.font = `bold ${CELL_SIZE}px monospace`;
     ctx.textAlign = 'center';
-    ctx.fillText('GAME OVER', this.canvas.width / 2, this.canvas.height / 2);
+    ctx.fillText('GAME OVER', (COLS * CELL_SIZE) / 2, (ROWS * CELL_SIZE) / 2);
     ctx.textAlign = 'start';
   }
 }

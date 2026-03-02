@@ -1,2 +1,166 @@
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body { background: #0d0d1a; color: #fff; font-family: monospace; }
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Synthwave background */
+  --color-bg:       #0a0a0f;
+  --color-grid:     #1a1a2e;
+  --color-border:   rgba(0, 240, 240, 0.25);
+  --color-text:     #c0c0e0;
+  --color-accent:   #00f0f0;
+  --color-dim:      rgba(192, 192, 224, 0.5);
+
+  /* Synthwave neon piece colors */
+  --color-I: #00f5ff;
+  --color-J: #4d4dff;
+  --color-L: #ff8c00;
+  --color-O: #ffe600;
+  --color-S: #00ff7f;
+  --color-T: #bf00ff;
+  --color-Z: #ff2060;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: 'Orbitron', monospace;
+}
+
+/* ===== Desktop: 3-column CSS Grid ===== */
+.game-layout {
+  display: grid;
+  grid-template-areas: "left-panel board right-panel";
+  grid-template-columns: 140px auto 160px;
+  align-items: start;
+  justify-content: center;
+  gap: 16px;
+  padding: 16px;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.panel-left  { grid-area: left-panel; }
+.panel-board { grid-area: board; }
+.panel-right { grid-area: right-panel; }
+
+/* Virtual controls hidden on desktop */
+.virtual-controls { display: none; }
+
+/* ===== Canvas scaling ===== */
+canvas#game-canvas {
+  display: block;
+  touch-action: none;   /* prevents browser scroll/zoom on touch */
+  max-width: 100%;
+  /* Scale down if viewport is short — leave room for title bar etc */
+  max-height: calc(100vh - 32px);
+  /* aspect-ratio keeps proportions when max-height kicks in */
+  aspect-ratio: 10 / 20;
+  border: 1px solid var(--color-border);
+}
+
+/* ===== Side panel common styles ===== */
+.side-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 8px;
+}
+
+.panel-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.panel-label {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--color-dim);
+  text-transform: uppercase;
+}
+
+.panel-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-accent);
+  letter-spacing: 1px;
+}
+
+.panel-value.small {
+  font-size: 14px;
+}
+
+/* Piece preview swatch */
+.piece-swatch {
+  width: 44px;
+  height: 22px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 900;
+  color: #0a0a0f;
+  letter-spacing: 1px;
+}
+
+.piece-swatch.empty {
+  background: var(--color-grid);
+  color: var(--color-dim);
+}
+
+/* ===== Mobile: single column ===== */
+@media (max-width: 600px) {
+  html, body {
+    overflow-y: auto;
+    height: auto;
+  }
+
+  .game-layout {
+    grid-template-areas:
+      "board"
+      "right-panel"
+      "left-panel";
+    grid-template-columns: 1fr;
+    height: auto;
+    padding: 8px;
+    gap: 8px;
+    overflow: visible;
+  }
+
+  canvas#game-canvas {
+    max-height: calc(100svh - 200px); /* leave room for controls */
+    width: 100%;
+  }
+
+  .virtual-controls {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 12px 8px;
+    gap: 6px;
+    position: sticky;
+    bottom: 0;
+    background: rgba(10, 10, 15, 0.97);
+    border-top: 1px solid var(--color-border);
+    z-index: 10;
+  }
+
+  .side-panel {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 4px;
+  }
+
+  .panel-label { font-size: 9px; }
+  .panel-value { font-size: 14px; }
+}
