@@ -1,7 +1,7 @@
 // src/renderer/CanvasRenderer.ts
 import { GameState, PieceSnapshot } from '../engine/types';
 import { CELL_SIZE, COLS, ROWS } from '../engine/constants';
-import { initTextures, getTexture, getTextureForCell } from './offscreen';
+import { initTextures, getTexture, getTextureForCell, getGhostTexture } from './offscreen';
 
 export class CanvasRenderer {
   private ctx: CanvasRenderingContext2D;
@@ -37,14 +37,14 @@ export class CanvasRenderer {
       }
     }
 
-    // 3. Draw ghost piece (same color at 25% opacity)
+    // 3. Draw ghost piece (outline-only, using pre-baked ghost texture)
     if (state.ghostPiece) {
-      this.drawPiece(state.ghostPiece, 0.25);
+      this.drawPiece(state.ghostPiece, true);
     }
 
-    // 4. Draw active piece (full opacity)
+    // 4. Draw active piece (full opacity solid texture)
     if (state.activePiece) {
-      this.drawPiece(state.activePiece, 1.0);
+      this.drawPiece(state.activePiece, false);
     }
 
     // 5. Game over overlay
@@ -55,7 +55,8 @@ export class CanvasRenderer {
 
   private drawGrid(): void {
     const { ctx } = this;
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
+    // VIS-02: dark blue grid lines against near-black background
+    ctx.strokeStyle = '#1a1a2e';
     ctx.lineWidth = 0.5;
     for (let c = 0; c <= COLS; c++) {
       ctx.beginPath();
@@ -71,10 +72,12 @@ export class CanvasRenderer {
     }
   }
 
-  private drawPiece(piece: PieceSnapshot, alpha: number): void {
+  private drawPiece(piece: PieceSnapshot, isGhost: boolean): void {
     const { ctx } = this;
-    const texture = getTexture(piece.type);
-    ctx.globalAlpha = alpha;
+    // Ghost uses pre-baked outline texture (alpha already baked at 0.7); active uses solid texture
+    const texture = isGhost ? getGhostTexture(piece.type) : getTexture(piece.type);
+    // Always draw at full globalAlpha — ghost outline baked alpha=0.7 into the texture
+    ctx.globalAlpha = 1.0;
     piece.minos.forEach(([dc, dr]) => {
       const r = piece.row + dr;
       const c = piece.col + dc;

@@ -6,6 +6,9 @@ import { PIECE_COLORS, CELL_TO_PIECE, CELL_SIZE } from '../engine/constants';
 // Each canvas is CELL_SIZE×CELL_SIZE showing a single mino with glow baked in
 const TEXTURES = new Map<PieceType, OffscreenCanvas>();
 
+// Ghost outline textures: outline-only, no fill, colored border with glow (VIS-01)
+const GHOST_TEXTURES = new Map<PieceType, OffscreenCanvas>();
+
 function preRenderPiece(type: PieceType): OffscreenCanvas {
   const size = CELL_SIZE;
   const canvas = new OffscreenCanvas(size, size);
@@ -22,16 +25,44 @@ function preRenderPiece(type: PieceType): OffscreenCanvas {
   return canvas;
 }
 
-/** Initialize all 7 piece textures at startup */
+function preRenderGhost(type: PieceType): OffscreenCanvas {
+  const size = CELL_SIZE;
+  const canvas = new OffscreenCanvas(size, size);
+  const ctx = canvas.getContext('2d')!;
+  const { glow } = PIECE_COLORS[type];
+
+  // Outline-only ghost: colored border, no fill
+  ctx.globalAlpha = 0.7;
+  ctx.strokeStyle = glow;
+  ctx.lineWidth = 2;
+  ctx.shadowBlur = 8;
+  ctx.shadowColor = glow;
+  // Inset 3px so stroke doesn't clip at canvas edges
+  ctx.strokeRect(3, 3, size - 6, size - 6);
+
+  return canvas;
+}
+
+/** Initialize all 7 piece textures and ghost textures at startup */
 export function initTextures(): void {
   const types: PieceType[] = ['I', 'J', 'L', 'O', 'S', 'T', 'Z'];
-  types.forEach(type => TEXTURES.set(type, preRenderPiece(type)));
+  types.forEach(type => {
+    TEXTURES.set(type, preRenderPiece(type));
+    GHOST_TEXTURES.set(type, preRenderGhost(type));
+  });
 }
 
 /** Get pre-rendered texture for a piece type */
 export function getTexture(type: PieceType): OffscreenCanvas {
   const tex = TEXTURES.get(type);
   if (!tex) throw new Error(`Texture not initialized for ${type} — call initTextures() first`);
+  return tex;
+}
+
+/** Get pre-rendered ghost outline texture for a piece type */
+export function getGhostTexture(type: PieceType): OffscreenCanvas {
+  const tex = GHOST_TEXTURES.get(type);
+  if (!tex) throw new Error(`Ghost texture not initialized for ${type} — call initTextures() first`);
   return tex;
 }
 

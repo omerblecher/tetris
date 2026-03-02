@@ -91,15 +91,15 @@ export const SPAWN_POSITIONS: Record<PieceType, { col: number; row: number }> = 
   L: { col: 3, row: -1 }, // 3×3 box
 };
 
-// Neon colors per piece type (used by renderer for fill and shadowColor)
+// Neon colors per piece type (synthwave palette — VIS-01)
 export const PIECE_COLORS: Record<PieceType, { fill: string; glow: string }> = {
-  I: { fill: '#00f0f0', glow: '#00f0f0' }, // cyan
-  J: { fill: '#0000f0', glow: '#4040ff' }, // blue
-  L: { fill: '#f0a000', glow: '#f0a000' }, // orange
-  O: { fill: '#f0f000', glow: '#f0f000' }, // yellow
-  S: { fill: '#00f000', glow: '#00f000' }, // green
-  Z: { fill: '#f00000', glow: '#ff4040' }, // red
-  T: { fill: '#a000f0', glow: '#cc00ff' }, // magenta/purple
+  I: { fill: '#00f5ff', glow: '#00f5ff' }, // electric cyan
+  J: { fill: '#4d4dff', glow: '#6666ff' }, // electric blue
+  L: { fill: '#ff8c00', glow: '#ffaa00' }, // neon orange
+  O: { fill: '#ffe600', glow: '#fff44f' }, // neon yellow
+  S: { fill: '#00ff7f', glow: '#00ff9f' }, // neon green
+  T: { fill: '#bf00ff', glow: '#d400ff' }, // neon purple
+  Z: { fill: '#ff2060', glow: '#ff4080' }, // hot pink
 };
 
 // CellValue → PieceType mapping (CellValue 1–7 maps to piece types)
