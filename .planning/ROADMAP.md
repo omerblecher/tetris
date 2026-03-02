@@ -71,7 +71,14 @@ Plans:
   3. Global top-10 leaderboard displays player names and scores; it updates in real time when a new high score is submitted
   4. After game over, an authenticated player's score is submitted to Firestore only if it beats their personal best; personal best is displayed on the game over screen
   5. Firestore security rules enforce: authenticated writes only, UID matches auth user, score is a number within valid range, records are write-once-or-increase (score can only go up)
-**Plans**: TBD
+**Plans**: 5 plans
+
+Plans:
+- [ ] 03-01-PLAN.md — Firebase SDK + config + auth functions + Firestore leaderboard functions + hardened security rules (Wave 1)
+- [ ] 03-02-PLAN.md — AuthContext + AuthHeader + extend useGameEngine for score submission + PB sync (Wave 2)
+- [ ] 03-03-PLAN.md — useLeaderboard hook + Leaderboard component + App.tsx AuthProvider/AuthHeader/Leaderboard integration (Wave 3)
+- [ ] 03-04-PLAN.md — GameBoard game-over overlay: new PB banner, guest sign-in button, enabled LEADERBOARD button (Wave 3)
+- [ ] 03-05-PLAN.md — Human verification checkpoint: full Firebase integration end-to-end (Wave 4)
 
 ### Phase 4: Deployment + Developer Setup
 **Goal**: The game is live on a public URL with auto-deploy on push, Firebase config is secured in environment variables, CLAUDE.md documents project rules, and the complete project is committed and pushed to GitHub
@@ -93,5 +100,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 |-------|----------------|--------|-----------|
 | 1. Core Game Engine | 7/7 | Complete | 2026-03-02 |
 | 2. React Shell + Visual Polish | 3/7 | In Progress|  |
-| 3. Firebase Auth + Leaderboard | 0/TBD | Not started | - |
+| 3. Firebase Auth + Leaderboard | 0/5 | Not started | - |
 | 4. Deployment + Developer Setup | 0/TBD | Not started | - |
