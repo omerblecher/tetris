@@ -85,7 +85,7 @@ export class CanvasRenderer {
       this.drawPiece(state.activePiece, false);
     }
 
-    // 5. Draw animation overlays (after game elements, before game-over overlay)
+    // 5. Draw animation overlays (after game elements)
     for (const anim of this.animations) {
       const progress = anim.elapsed / anim.duration; // 0.0 → 1.0
       switch (anim.type) {
@@ -93,11 +93,6 @@ export class CanvasRenderer {
         case 'lockFlash': this.drawLockFlash(anim.cells!, progress); break;
         case 'levelUp':   this.drawLevelUpFlash(progress); break;
       }
-    }
-
-    // 6. Game over overlay
-    if (state.isGameOver) {
-      this.drawGameOverOverlay();
     }
   }
 
@@ -164,15 +159,4 @@ export class CanvasRenderer {
     ctx.fillRect(0, 0, COLS * CELL_SIZE, ROWS * CELL_SIZE);
   }
 
-  private drawGameOverOverlay(): void {
-    const { ctx } = this;
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.6)';
-    // Use logical dimensions — ctx is already scaled by dpr
-    ctx.fillRect(0, 0, COLS * CELL_SIZE, ROWS * CELL_SIZE);
-    ctx.fillStyle = '#ff4444';
-    ctx.font = `bold ${CELL_SIZE}px monospace`;
-    ctx.textAlign = 'center';
-    ctx.fillText('GAME OVER', (COLS * CELL_SIZE) / 2, (ROWS * CELL_SIZE) / 2);
-    ctx.textAlign = 'start';
-  }
 }
