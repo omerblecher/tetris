@@ -67,7 +67,7 @@ export function useGameEngine(canvasRef: RefObject<HTMLCanvasElement | null>) {
 
       if (engineRef.current && rendererRef.current) {
         engineRef.current.update(dt);
-        rendererRef.current.render(engineRef.current.state);
+        rendererRef.current.render(engineRef.current.state, dt);
       }
 
       rafId = requestAnimationFrame(loop);

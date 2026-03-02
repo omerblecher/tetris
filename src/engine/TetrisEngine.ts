@@ -115,6 +115,8 @@ export class TetrisEngine {
   get score(): number { return this.scorer.score; }
   get level(): number { return this.scorer.level; }
   get lines(): number { return this.scorer.lines; }
+  get isPaused(): boolean { return this._isPaused; }
+  get isGameOver(): boolean { return this._isGameOver; }
 
   debug = {
     printBoard: (): void => {
