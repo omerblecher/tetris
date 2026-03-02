@@ -2,12 +2,14 @@
 import { useRef, useState, useEffect, RefObject } from 'react';
 import { TetrisEngine } from '../engine/TetrisEngine';
 import { CanvasRenderer } from '../renderer/CanvasRenderer';
+import { PieceType } from '../engine/types';
 
 interface DisplayState {
   score: number;
   level: number;
   lines: number;
   isGameOver: boolean;
+  nextPieces: PieceType[];
 }
 
 export function useGameEngine(canvasRef: RefObject<HTMLCanvasElement | null>) {
@@ -21,6 +23,7 @@ export function useGameEngine(canvasRef: RefObject<HTMLCanvasElement | null>) {
     level: 1,
     lines: 0,
     isGameOver: false,
+    nextPieces: [],
   });
 
   useEffect(() => {
@@ -32,7 +35,13 @@ export function useGameEngine(canvasRef: RefObject<HTMLCanvasElement | null>) {
     engineRef.current = engine;
     rendererRef.current = renderer;
 
+    // Seed initial nextPieces (engine already has the first bag dealt)
+    setDisplayState(prev => ({ ...prev, nextPieces: engine.state.nextPieces }));
+
     // React state updated ONLY via engine callbacks — not in the rAF loop
+    engine.on('onPieceLock', (_pieceType, _tSpin) => {
+      setDisplayState(prev => ({ ...prev, nextPieces: engineRef.current?.state.nextPieces ?? [] }));
+    });
     engine.on('onScoreUpdate', (score, level, lines) => {
       setDisplayState(prev => ({ ...prev, score, level, lines }));
     });
@@ -71,7 +80,13 @@ export function useGameEngine(canvasRef: RefObject<HTMLCanvasElement | null>) {
 
   const restart = () => {
     engineRef.current?.reset();
-    setDisplayState({ score: 0, level: 1, lines: 0, isGameOver: false });
+    setDisplayState({
+      score: 0,
+      level: 1,
+      lines: 0,
+      isGameOver: false,
+      nextPieces: engineRef.current?.state.nextPieces ?? [],
+    });
   };
 
   return { engineRef, displayState, restart };

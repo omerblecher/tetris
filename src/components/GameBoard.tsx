@@ -1,11 +1,12 @@
 // src/components/GameBoard.tsx
 import { useRef, useEffect } from 'react';
 import { useGameEngine } from '../hooks/useGameEngine';
-import { COLS, ROWS, CELL_SIZE } from '../engine/constants';
+import { COLS, ROWS, CELL_SIZE, PIECE_COLORS } from '../engine/constants';
 
 export function GameBoard() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { engineRef, displayState, restart } = useGameEngine(canvasRef);
+  const { score, level, lines, isGameOver, nextPieces } = displayState;
 
   // Keyboard controls — wired here in Phase 1 for console testing ergonomics
   // Phase 2 will expand this with auto-repeat (DAS/ARR) and mobile touch
@@ -48,11 +49,41 @@ export function GameBoard() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
+      {/* Next piece preview */}
+      <div style={{ fontFamily: 'monospace', color: '#00f0f0', textAlign: 'center' }}>
+        <div style={{ marginBottom: '8px', letterSpacing: '2px' }}>NEXT</div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'center' }}>
+          {nextPieces.slice(0, 3).map((type, i) => {
+            const color = PIECE_COLORS[type]?.fill ?? '#ffffff';
+            return (
+              <div
+                key={i}
+                style={{
+                  width: '40px',
+                  height: '20px',
+                  background: color,
+                  boxShadow: `0 0 8px ${color}`,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: '#0d0d1a',
+                  fontSize: '12px',
+                  fontWeight: 'bold',
+                  letterSpacing: '1px',
+                }}
+              >
+                {type}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
       {/* Score display — React state, updated via engine events */}
       <div style={{ fontFamily: 'monospace', color: '#00f0f0', textAlign: 'center' }}>
-        <div>SCORE: {displayState.score}</div>
-        <div>LEVEL: {displayState.level}</div>
-        <div>LINES: {displayState.lines}</div>
+        <div>SCORE: {score}</div>
+        <div>LEVEL: {level}</div>
+        <div>LINES: {lines}</div>
       </div>
 
       {/* Game canvas — engine renders here at 60fps */}
@@ -67,7 +98,7 @@ export function GameBoard() {
       />
 
       {/* Game over overlay */}
-      {displayState.isGameOver && (
+      {isGameOver && (
         <div style={{ textAlign: 'center' }}>
           <div style={{ color: '#ff4444', fontFamily: 'monospace', fontSize: '24px' }}>
             GAME OVER
