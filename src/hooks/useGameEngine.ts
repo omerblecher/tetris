@@ -38,13 +38,35 @@ export function useGameEngine(canvasRef: RefObject<HTMLCanvasElement | null>) {
     // Seed initial nextPieces (engine already has the first bag dealt)
     setDisplayState(prev => ({ ...prev, nextPieces: engine.state.nextPieces }));
 
+    // Track locked mino positions for lock flash animation
+    let lastLockedCells: [number, number][] = [];
+
     // React state updated ONLY via engine callbacks — not in the rAF loop
     engine.on('onPieceLock', (_pieceType, _tSpin) => {
+      // Capture locked mino positions from engine state BEFORE next piece spawns
+      // onPieceLock fires in lockPiece() before this.activePiece is set to null
+      const state = engineRef.current?.state;
+      if (state?.activePiece) {
+        lastLockedCells = state.activePiece.minos.map(([dc, dr]) => [
+          state.activePiece!.col + dc,
+          state.activePiece!.row + dr,
+        ] as [number, number]);
+      }
+      rendererRef.current?.triggerLockFlash(lastLockedCells);
       setDisplayState(prev => ({ ...prev, nextPieces: engineRef.current?.state.nextPieces ?? [] }));
     });
-    engine.on('onLineClear', (_linesCleared, _score, _tSpin, _b2b, _clearedRows) => {
-      // _clearedRows will be used by animation trigger in Plan 02-02
-      setDisplayState(prev => ({ ...prev, score: _score, level: engineRef.current?.level ?? 1, lines: engineRef.current?.lines ?? 0 }));
+    engine.on('onLineClear', (_linesCleared, _score, _tSpin, _b2b, clearedRows) => {
+      rendererRef.current?.triggerLineClear(clearedRows);
+      setDisplayState(prev => ({
+        ...prev,
+        score: _score,
+        level: engineRef.current?.level ?? 1,
+        lines: engineRef.current?.lines ?? 0,
+      }));
+    });
+    engine.on('onLevelUp', (_level) => {
+      rendererRef.current?.triggerLevelUp();
+      setDisplayState(prev => ({ ...prev, level: _level }));
     });
     engine.on('onScoreUpdate', (score, level, lines) => {
       setDisplayState(prev => ({ ...prev, score, level, lines }));
@@ -93,5 +115,5 @@ export function useGameEngine(canvasRef: RefObject<HTMLCanvasElement | null>) {
     });
   };
 
-  return { engineRef, displayState, restart };
+  return { engineRef, rendererRef, displayState, restart };
 }
