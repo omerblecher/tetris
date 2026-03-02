@@ -49,6 +49,8 @@ Recent decisions affecting current work:
 - [01-01]: Vite scaffold created manually (npm create vite requires interactive TTY, unavailable in bash shell). Equivalent output produced.
 - [01-01]: All SPAWN_POSITIONS use col 3, row -1 — uniform spawn centered on 10-wide board.
 - [01-01]: SRS dy convention: tetris.wiki uses +y=up; game board uses +row=down. `tryRotate` must apply `newRow = piece.row - dy`.
+- [01-02]: Array.from({ length: ROWS }, () => Array(COLS).fill(0)) is required for Board cells — Array(ROWS).fill([]) shares row references causing silent bugs.
+- [01-02]: Board.isValid() treats negative rows (spawn buffer) as always valid — pieces enter from row -1 and must be allowed during spawn.
 - [01-03]: Guideline gravity formula at level 1 produces 1000ms (not 800ms) — `(0.8)^0 = 1.0s`. Plan spec had erroneous test expectations; formula itself is correct per tetris.wiki.
 - [01-03]: Scorer tests isolate B2B from combo by setting `b2bActive` directly — cleaner than sequential clears that trigger both modifiers simultaneously.
 - [01-03]: Perfect clear uses level-scaled Guideline values (PC_SCORES: 800/1200/1800/2000 × level; B2B Tetris PC: 3200 × level) rather than flat 3500 placeholder.
@@ -65,5 +67,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-02
-Stopped at: Completed 01-03-PLAN.md — Scorer module (TDD): calculateLineClearScore, addHardDropScore, addSoftDropScore, getGravityMs, reset. RED: 582a7d2, GREEN: a4e1f71.
+Stopped at: Completed 01-02-PLAN.md — Board (TDD) and Bag tests. Board RED: b3eb4a0, Board GREEN: cfba0a9, Bag tests: c2bfa7b. Note: 01-03 (Scorer) was already committed in a prior partial run.
 Resume file: None

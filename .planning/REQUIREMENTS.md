@@ -17,13 +17,13 @@ Requirements for initial release. Each maps to roadmap phases.
 - [ ] **ENG-06**: Player can soft drop (hold down arrow) to accelerate piece fall
 - [ ] **ENG-07**: Ghost piece shows semi-transparent preview of where current piece will land
 - [ ] **ENG-08**: Player can hold the current piece (C key / hold button) and swap with held piece once per drop
-- [ ] **ENG-09**: Game displays next 3 upcoming pieces in a preview panel
+- [x] **ENG-09**: Game displays next 3 upcoming pieces in a preview panel
 - [x] **ENG-10**: Collision detection prevents pieces from moving through walls, floor, or locked cells
-- [ ] **ENG-11**: Game detects and handles game over when a newly spawned piece cannot be placed (board is full)
+- [x] **ENG-11**: Game detects and handles game over when a newly spawned piece cannot be placed (board is full)
 
 ### Line Clearing & Scoring
 
-- [ ] **SCR-01**: Complete horizontal rows are cleared; rows above fall down to fill gaps
+- [x] **SCR-01**: Complete horizontal rows are cleared; rows above fall down to fill gaps
 - [x] **SCR-02**: Score uses standard Tetris formula: 100/300/500/800 points for 1/2/3/4 lines × current level
 - [x] **SCR-03**: Back-to-back Tetris (4-line clear) and combo bonuses apply multiplier to score
 - [x] **SCR-04**: Level increases every 10 lines cleared; gravity (fall speed) scales with level
@@ -125,10 +125,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 | ENG-06 | Phase 1 | Pending |
 | ENG-07 | Phase 1 | Pending |
 | ENG-08 | Phase 1 | Pending |
-| ENG-09 | Phase 1 | Pending |
+| ENG-09 | Phase 1 | Complete |
 | ENG-10 | Phase 1 | Complete |
-| ENG-11 | Phase 1 | Pending |
-| SCR-01 | Phase 1 | Pending |
+| ENG-11 | Phase 1 | Complete |
+| SCR-01 | Phase 1 | Complete |
 | SCR-02 | Phase 1 | Complete |
 | SCR-03 | Phase 1 | Complete |
 | SCR-04 | Phase 1 | Complete |

@@ -81,7 +81,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Core Game Engine | 3/6 | In progress | - |
+| 1. Core Game Engine | 3/6 | In Progress|  |
 | 2. React Shell + Visual Polish | 0/TBD | Not started | - |
 | 3. Firebase Auth + Leaderboard | 0/TBD | Not started | - |
 | 4. Deployment + Developer Setup | 0/TBD | Not started | - |
