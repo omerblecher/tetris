@@ -230,7 +230,8 @@ export class TetrisEngine {
     this.events.onPieceLock?.(p.type, tSpin);
 
     // Clear lines and score
-    const linesCleared = this.board.clearLines();
+    const clearedRows = this.board.clearLines();
+    const linesCleared = clearedRows.length;
     const isPerfectClear = linesCleared > 0 && this.board.isPerfectClear();
 
     const prevLevel = this.scorer.level;
@@ -238,7 +239,7 @@ export class TetrisEngine {
     const newLevel = this.scorer.level;
 
     if (linesCleared > 0) {
-      this.events.onLineClear?.(linesCleared, this.scorer.score, tSpin, this.scorer.b2bActive);
+      this.events.onLineClear?.(linesCleared, this.scorer.score, tSpin, this.scorer.b2bActive, clearedRows);
     }
     if (newLevel > prevLevel) {
       this.events.onLevelUp?.(newLevel);

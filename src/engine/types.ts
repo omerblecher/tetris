@@ -36,7 +36,7 @@ export type TSpinType = 'none' | 'mini' | 'full';
 
 // Engine event callbacks — Phase 2 React subscribes to these
 export interface GameEvents {
-  onLineClear: (linesCleared: number, score: number, tSpin: TSpinType, isB2B: boolean) => void;
+  onLineClear: (linesCleared: number, score: number, tSpin: TSpinType, isB2B: boolean, clearedRows: number[]) => void;
   onGameOver: (finalScore: number) => void;
   onLevelUp: (newLevel: number) => void;
   onPieceLock: (pieceType: PieceType, tSpin: TSpinType) => void;

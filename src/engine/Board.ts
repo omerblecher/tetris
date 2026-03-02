@@ -30,15 +30,18 @@ export class Board {
     });
   }
 
-  clearLines(): number {
-    const fullRows = this.cells.filter(row => row.every(c => c !== 0));
-    const remaining = this.cells.filter(row => row.some(c => c === 0));
-    const cleared = fullRows.length;
-    if (cleared > 0) {
-      const emptyRows = Array.from({ length: cleared }, () => Array(COLS).fill(0) as CellValue[]);
+  clearLines(): number[] {
+    const clearedIndices: number[] = [];
+    // Collect indices of full rows BEFORE mutating
+    this.cells.forEach((row, i) => {
+      if (row.every(c => c !== 0)) clearedIndices.push(i);
+    });
+    if (clearedIndices.length > 0) {
+      const remaining = this.cells.filter(row => row.some(c => c === 0));
+      const emptyRows = Array.from({ length: clearedIndices.length }, () => Array(COLS).fill(0) as CellValue[]);
       this.cells = [...emptyRows, ...remaining];
     }
-    return cleared;
+    return clearedIndices;
   }
 
   isPerfectClear(): boolean {

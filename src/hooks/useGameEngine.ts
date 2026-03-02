@@ -42,6 +42,10 @@ export function useGameEngine(canvasRef: RefObject<HTMLCanvasElement | null>) {
     engine.on('onPieceLock', (_pieceType, _tSpin) => {
       setDisplayState(prev => ({ ...prev, nextPieces: engineRef.current?.state.nextPieces ?? [] }));
     });
+    engine.on('onLineClear', (_linesCleared, _score, _tSpin, _b2b, _clearedRows) => {
+      // _clearedRows will be used by animation trigger in Plan 02-02
+      setDisplayState(prev => ({ ...prev, score: _score, level: engineRef.current?.level ?? 1, lines: engineRef.current?.lines ?? 0 }));
+    });
     engine.on('onScoreUpdate', (score, level, lines) => {
       setDisplayState(prev => ({ ...prev, score, level, lines }));
     });

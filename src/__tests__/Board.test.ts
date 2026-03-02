@@ -98,31 +98,31 @@ describe('Board', () => {
   // --- clearLines() ---
 
   describe('clearLines()', () => {
-    it('returns 0 on an empty board', () => {
-      expect(board.clearLines()).toBe(0);
+    it('returns empty array on an empty board', () => {
+      expect(board.clearLines()).toEqual([]);
     });
 
-    it('returns 1 and removes the row when one full row is present', () => {
+    it('returns [19] and removes the row when one full row is present', () => {
       // Fill row 19 entirely
       const fullRow: [number, number][] = Array.from({ length: COLS }, (_, i) => [i, 0]);
       board.lock(fullRow, 0, 19, 1 as CellValue);
 
       const cleared = board.clearLines();
-      expect(cleared).toBe(1);
+      expect(cleared).toEqual([19]);
       // Row 19 is now empty (rows shifted down)
       for (let c = 0; c < COLS; c++) {
         expect(board.getCell(c, 19)).toBe(0);
       }
     });
 
-    it('returns 4 when four full rows are present', () => {
+    it('returns [16,17,18,19] when four full rows are present', () => {
       // Fill rows 16-19 entirely
       for (let r = 16; r <= 19; r++) {
         const fullRow: [number, number][] = Array.from({ length: COLS }, (_, i) => [i, 0]);
         board.lock(fullRow, 0, r, 1 as CellValue);
       }
       const cleared = board.clearLines();
-      expect(cleared).toBe(4);
+      expect(cleared).toEqual([16, 17, 18, 19]);
     });
 
     it('after clearLines, empty rows are prepended at the top', () => {
@@ -148,7 +148,7 @@ describe('Board', () => {
       // Fill row 19 except for one cell
       const partialRow: [number, number][] = Array.from({ length: COLS - 1 }, (_, i) => [i, 0]);
       board.lock(partialRow, 0, 19, 1 as CellValue);
-      expect(board.clearLines()).toBe(0);
+      expect(board.clearLines()).toEqual([]);
     });
   });
 
