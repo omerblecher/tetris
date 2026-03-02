@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-03-01)
 ## Current Position
 
 Phase: 2 of 4 (React Shell + Visual Polish)
-Plan: 0 of TBD in current phase
-Status: Phase 1 complete — ready for Phase 2 planning
-Last activity: 2026-03-02 — Phase 1 complete: human verified, 17/17 requirements satisfied, VERIFICATION.md passed
+Plan: 1 of 7 in current phase
+Status: In Progress — Phase 2 Plan 01 complete
+Last activity: 2026-03-02 — Phase 2 Plan 01: synthwave palette, ghost outline textures, cleared-row indices in onLineClear
 
-Progress: [██░░░░░░░░] 25%
+Progress: [███░░░░░░░] 30%
 
 ## Performance Metrics
 
@@ -30,10 +30,12 @@ Progress: [██░░░░░░░░] 25%
 | Phase 1 | 7 completed | ~40 min | ~5.7 min |
 
 **Recent Trend:**
-- Last 7 plans: 01-01 (6 min), 01-02 (6 min est.), 01-03 (7 min), 01-04 (8 min), 01-05 (7 min), 01-06 (4 min est.), 01-07 (2 min)
+- Last 8 plans: 01-01 (6 min), 01-02 (6 min est.), 01-03 (7 min), 01-04 (8 min), 01-05 (7 min), 01-06 (4 min est.), 01-07 (2 min), 02-01 (2 min)
 - Trend: consistent ~2-8 min per plan
 
 *Updated after each plan completion*
+
+| Phase 02 P01 | 2 min | 2 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -63,6 +65,8 @@ Recent decisions affecting current work:
 - [01-07]: onPieceLock used (not onScoreUpdate) to refresh nextPieces — fires immediately on lock before score update; semantically correct
 - [01-07]: nextPieces seeded synchronously after engine construction before rAF starts — avoids blank NEXT panel on mount
 - [01-07]: restart() must re-read engine.state.nextPieces after reset() — keeps preview consistent on game restart
+- [Phase 02]: Ghost textures pre-baked into OffscreenCanvas with globalAlpha=0.7 and strokeRect — no runtime alpha manipulation at render time
+- [Phase 02]: clearLines() returns number[] (row indices) instead of number (count) so animation system can target exact rows
 
 ### Pending Todos
 
@@ -76,5 +80,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-02
-Stopped at: Completed 01-07-PLAN.md — next-piece preview panel ENG-09 (08c48f7). NEXT panel with 3 neon-colored blocks visible in UI, updates on piece lock.
+Stopped at: Completed 02-01-PLAN.md — synthwave palette, ghost outline textures, cleared-row indices (ee39490). VIS-01, VIS-02, VIS-05 satisfied.
 Resume file: None

@@ -32,11 +32,11 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Visual & Aesthetic
 
-- [ ] **VIS-01**: Game board renders on HTML5 Canvas with neon/glow effect — each tetromino type has a distinct neon color rendered via `ctx.shadowBlur` / `ctx.shadowColor`
-- [ ] **VIS-02**: Background is near-black (#0d0d1a or similar); board lines are subtle dark grid
+- [x] **VIS-01**: Game board renders on HTML5 Canvas with neon/glow effect — each tetromino type has a distinct neon color rendered via `ctx.shadowBlur` / `ctx.shadowColor`
+- [x] **VIS-02**: Background is near-black (#0d0d1a or similar); board lines are subtle dark grid
 - [ ] **VIS-03**: Line-clear animation: cleared rows flash/pulse before disappearing
 - [ ] **VIS-04**: Level-up visual effect: brief screen flash or glow burst on level increase
-- [ ] **VIS-05**: Active piece has brightest glow; ghost piece is dim/translucent version of the same color
+- [x] **VIS-05**: Active piece has brightest glow; ghost piece is dim/translucent version of the same color
 - [ ] **VIS-06**: Lock-in flash: brief bright flash when a piece locks into place
 
 ### Controls & UX
@@ -134,11 +134,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 | SCR-04 | Phase 1 | Complete |
 | SCR-05 | Phase 1 | Complete |
 | SCR-06 | Phase 1 | Complete |
-| VIS-01 | Phase 2 | Pending |
-| VIS-02 | Phase 2 | Pending |
+| VIS-01 | Phase 2 | Complete |
+| VIS-02 | Phase 2 | Complete |
 | VIS-03 | Phase 2 | Pending |
 | VIS-04 | Phase 2 | Pending |
-| VIS-05 | Phase 2 | Pending |
+| VIS-05 | Phase 2 | Complete |
 | VIS-06 | Phase 2 | Pending |
 | CTR-01 | Phase 2 | Pending |
 | CTR-02 | Phase 2 | Pending |

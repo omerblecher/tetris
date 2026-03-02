@@ -50,7 +50,16 @@ Plans:
   3. All gameplay works via keyboard on desktop (arrows, spacebar, Z/C/P keys); player can pause and resume; game over screen shows final score and restart option
   4. On mobile, swipe gestures control movement and drop; on-screen virtual buttons are visible and tappable for rotate, hard drop, and hold; no hardware keyboard required
   5. Layout adapts correctly: desktop shows board centered with side panels; mobile shows board top, compact score panel, and virtual controls at bottom — no overflow or scroll on any device
-**Plans**: TBD
+**Plans**: 7 plans
+
+Plans:
+- [x] 02-01-PLAN.md — Synthwave palette + ghost outline textures + clearLines row indices (Wave 1)
+- [ ] 02-02-PLAN.md — Animation state machine: line-clear flash, lock-in flash, level-up flash (Wave 2)
+- [ ] 02-03-PLAN.md — Keyboard DAS/ARR hook + pause/resume (P key) (Wave 2)
+- [ ] 02-04-PLAN.md — CSS Grid layout + SidePanel component + DPR canvas scaling + localStorage best score (Wave 3)
+- [ ] 02-05-PLAN.md — Touch swipe/tap controls + VirtualControls mobile buttons (Wave 4)
+- [ ] 02-06-PLAN.md — Game-over React overlay + pause overlay (Wave 4)
+- [ ] 02-07-PLAN.md — Human verification checkpoint (Wave 5)
 
 ### Phase 3: Firebase Auth + Leaderboard
 **Goal**: Authenticated players can submit scores to a global Firestore leaderboard with hardened security rules; guest players can view the leaderboard and play without an account
@@ -83,6 +92,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Core Game Engine | 7/7 | Complete | 2026-03-02 |
-| 2. React Shell + Visual Polish | 0/TBD | Not started | - |
+| 2. React Shell + Visual Polish | 1/7 | In Progress|  |
 | 3. Firebase Auth + Leaderboard | 0/TBD | Not started | - |
 | 4. Deployment + Developer Setup | 0/TBD | Not started | - |
