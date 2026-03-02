@@ -1,51 +1,14 @@
 // src/components/GameBoard.tsx
-import { useRef, useEffect } from 'react';
+import { useRef } from 'react';
 import { useGameEngine } from '../hooks/useGameEngine';
+import { useKeyboard } from '../hooks/useKeyboard';
 import { COLS, ROWS, CELL_SIZE, PIECE_COLORS } from '../engine/constants';
 
 export function GameBoard() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { engineRef, displayState, restart } = useGameEngine(canvasRef);
+  useKeyboard(engineRef);
   const { score, level, lines, isGameOver, nextPieces } = displayState;
-
-  // Keyboard controls — wired here in Phase 1 for console testing ergonomics
-  // Phase 2 will expand this with auto-repeat (DAS/ARR) and mobile touch
-  useEffect(() => {
-    function onKeyDown(e: KeyboardEvent) {
-      const engine = engineRef.current;
-      if (!engine) return;
-
-      // Prevent default scroll behavior for arrow keys
-      if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', ' '].includes(e.key)) {
-        e.preventDefault();
-      }
-
-      switch (e.key) {
-        case 'ArrowLeft':  engine.moveLeft(); break;
-        case 'ArrowRight': engine.moveRight(); break;
-        case 'ArrowUp':    engine.rotate(true); break;     // CW
-        case 'z':
-        case 'Z':          engine.rotate(false); break;    // CCW
-        case 'ArrowDown':  engine.softDrop(true); break;
-        case ' ':          engine.hardDrop(); break;
-        case 'c':
-        case 'C':          engine.hold(); break;
-      }
-    }
-
-    function onKeyUp(e: KeyboardEvent) {
-      const engine = engineRef.current;
-      if (!engine) return;
-      if (e.key === 'ArrowDown') engine.softDrop(false);
-    }
-
-    window.addEventListener('keydown', onKeyDown);
-    window.addEventListener('keyup', onKeyUp);
-    return () => {
-      window.removeEventListener('keydown', onKeyDown);
-      window.removeEventListener('keyup', onKeyUp);
-    };
-  }, [engineRef]);
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
@@ -120,9 +83,9 @@ export function GameBoard() {
         </div>
       )}
 
-      {/* Phase 1 controls legend */}
+      {/* Controls legend */}
       <div style={{ fontFamily: 'monospace', color: 'rgba(255,255,255,0.4)', fontSize: '12px', textAlign: 'center' }}>
-        ← → Move | ↑ Rotate CW | Z Rotate CCW | ↓ Soft Drop | Space Hard Drop | C Hold
+        ← → Move | ↑ Rotate CW | Z/Ctrl Rotate CCW | ↓ Soft Drop | Space Hard Drop | C Hold | P Pause
       </div>
     </div>
   );
