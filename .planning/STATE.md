@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-03-01)
 ## Current Position
 
 Phase: 2 of 4 (React Shell + Visual Polish)
-Plan: 1 of 7 in current phase
-Status: In Progress — Phase 2 Plan 01 complete
-Last activity: 2026-03-02 — Phase 2 Plan 01: synthwave palette, ghost outline textures, cleared-row indices in onLineClear
+Plan: 4 of 7 in current phase
+Status: In Progress — Phase 2 Plan 03 complete
+Last activity: 2026-03-02 — Phase 2 Plan 03: useKeyboard hook with DAS/ARR (133ms/33ms), P-key pause, isPaused/isGameOver getters
 
-Progress: [███░░░░░░░] 30%
+Progress: [████░░░░░░] 40%
 
 ## Performance Metrics
 
@@ -36,6 +36,8 @@ Progress: [███░░░░░░░] 30%
 *Updated after each plan completion*
 
 | Phase 02 P01 | 2 min | 2 tasks | 8 files |
+| Phase 02 P02 | 5 min | 2 tasks | 2 files |
+| Phase 02 P03 | 8 min | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -67,6 +69,11 @@ Recent decisions affecting current work:
 - [01-07]: restart() must re-read engine.state.nextPieces after reset() — keeps preview consistent on game restart
 - [Phase 02]: Ghost textures pre-baked into OffscreenCanvas with globalAlpha=0.7 and strokeRect — no runtime alpha manipulation at render time
 - [Phase 02]: clearLines() returns number[] (row indices) instead of number (count) so animation system can target exact rows
+- [Phase 02]: Animation state machine uses elapsed/duration pattern with dt-driven pruning — animations auto-expire without external cleanup
+- [Phase 02]: onPieceLock captures state.activePiece.minos before null assignment — timing verified against lockPiece() source
+- [02-03]: DAS_DELAY=133ms, ARR_INTERVAL=33ms — TETR.IO standard; DAS callbacks re-check isPaused at each tick to block movement if paused mid-hold
+- [02-03]: Control key mapped to CCW rotate without e.preventDefault() — browser undo not intercepted
+- [02-03]: Blur handler calls softDrop(false) in addition to clearing DAS intervals — prevents stuck soft-drop state on alt-tab
 
 ### Pending Todos
 
@@ -80,5 +87,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-02
-Stopped at: Completed 02-01-PLAN.md — synthwave palette, ghost outline textures, cleared-row indices (ee39490). VIS-01, VIS-02, VIS-05 satisfied.
+Stopped at: Completed 02-03-PLAN.md — useKeyboard DAS/ARR hook, P-key pause, isPaused/isGameOver getters (9327f6f). CTR-01, CTR-04 satisfied.
 Resume file: None

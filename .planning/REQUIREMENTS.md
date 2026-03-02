@@ -34,17 +34,17 @@ Requirements for initial release. Each maps to roadmap phases.
 
 - [x] **VIS-01**: Game board renders on HTML5 Canvas with neon/glow effect — each tetromino type has a distinct neon color rendered via `ctx.shadowBlur` / `ctx.shadowColor`
 - [x] **VIS-02**: Background is near-black (#0d0d1a or similar); board lines are subtle dark grid
-- [ ] **VIS-03**: Line-clear animation: cleared rows flash/pulse before disappearing
-- [ ] **VIS-04**: Level-up visual effect: brief screen flash or glow burst on level increase
+- [x] **VIS-03**: Line-clear animation: cleared rows flash/pulse before disappearing
+- [x] **VIS-04**: Level-up visual effect: brief screen flash or glow burst on level increase
 - [x] **VIS-05**: Active piece has brightest glow; ghost piece is dim/translucent version of the same color
-- [ ] **VIS-06**: Lock-in flash: brief bright flash when a piece locks into place
+- [x] **VIS-06**: Lock-in flash: brief bright flash when a piece locks into place
 
 ### Controls & UX
 
-- [ ] **CTR-01**: All gameplay functions work with keyboard on desktop (arrows, spacebar, Z/C keys)
+- [x] **CTR-01**: All gameplay functions work with keyboard on desktop (arrows, spacebar, Z/C keys)
 - [ ] **CTR-02**: Touch/swipe controls work on mobile: swipe left/right = move, swipe down = soft drop, swipe up = hard drop, tap = rotate clockwise
 - [ ] **CTR-03**: On-screen virtual buttons visible on mobile for discoverability (rotate CW/CCW, hard drop, hold)
-- [ ] **CTR-04**: Player can pause and resume the game (P key or pause button)
+- [x] **CTR-04**: Player can pause and resume the game (P key or pause button)
 - [ ] **CTR-05**: Game over screen displays final score, personal best, and options to play again or view leaderboard
 
 ### Responsive Layout
@@ -136,14 +136,14 @@ Which phases cover which requirements. Updated during roadmap creation.
 | SCR-06 | Phase 1 | Complete |
 | VIS-01 | Phase 2 | Complete |
 | VIS-02 | Phase 2 | Complete |
-| VIS-03 | Phase 2 | Pending |
-| VIS-04 | Phase 2 | Pending |
+| VIS-03 | Phase 2 | Complete |
+| VIS-04 | Phase 2 | Complete |
 | VIS-05 | Phase 2 | Complete |
-| VIS-06 | Phase 2 | Pending |
-| CTR-01 | Phase 2 | Pending |
+| VIS-06 | Phase 2 | Complete |
+| CTR-01 | Phase 2 | Complete |
 | CTR-02 | Phase 2 | Pending |
 | CTR-03 | Phase 2 | Pending |
-| CTR-04 | Phase 2 | Pending |
+| CTR-04 | Phase 2 | Complete |
 | CTR-05 | Phase 2 | Pending |
 | LAY-01 | Phase 2 | Pending |
 | LAY-02 | Phase 2 | Pending |
