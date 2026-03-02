@@ -24,10 +24,10 @@ Requirements for initial release. Each maps to roadmap phases.
 ### Line Clearing & Scoring
 
 - [ ] **SCR-01**: Complete horizontal rows are cleared; rows above fall down to fill gaps
-- [ ] **SCR-02**: Score uses standard Tetris formula: 100/300/500/800 points for 1/2/3/4 lines × current level
-- [ ] **SCR-03**: Back-to-back Tetris (4-line clear) and combo bonuses apply multiplier to score
-- [ ] **SCR-04**: Level increases every 10 lines cleared; gravity (fall speed) scales with level
-- [ ] **SCR-05**: Hard drop adds 2 points per cell dropped; soft drop adds 1 point per cell
+- [x] **SCR-02**: Score uses standard Tetris formula: 100/300/500/800 points for 1/2/3/4 lines × current level
+- [x] **SCR-03**: Back-to-back Tetris (4-line clear) and combo bonuses apply multiplier to score
+- [x] **SCR-04**: Level increases every 10 lines cleared; gravity (fall speed) scales with level
+- [x] **SCR-05**: Hard drop adds 2 points per cell dropped; soft drop adds 1 point per cell
 - [ ] **SCR-06**: Current score, level, and lines cleared are displayed in real time during gameplay
 
 ### Visual & Aesthetic
@@ -129,10 +129,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 | ENG-10 | Phase 1 | Complete |
 | ENG-11 | Phase 1 | Pending |
 | SCR-01 | Phase 1 | Pending |
-| SCR-02 | Phase 1 | Pending |
-| SCR-03 | Phase 1 | Pending |
-| SCR-04 | Phase 1 | Pending |
-| SCR-05 | Phase 1 | Pending |
+| SCR-02 | Phase 1 | Complete |
+| SCR-03 | Phase 1 | Complete |
+| SCR-04 | Phase 1 | Complete |
+| SCR-05 | Phase 1 | Complete |
 | SCR-06 | Phase 1 | Pending |
 | VIS-01 | Phase 2 | Pending |
 | VIS-02 | Phase 2 | Pending |
