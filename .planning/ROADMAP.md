@@ -32,7 +32,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: 6 plans
 
 Plans:
-- [ ] 01-01-PLAN.md — Project scaffold + types + SRS wall kick tables (Wave 1)
+- [x] 01-01-PLAN.md — Project scaffold + types + SRS wall kick tables (Wave 1)
 - [ ] 01-02-PLAN.md — TDD: Board (collision, line clear, perfect clear) + Bag (7-bag randomizer) (Wave 2)
 - [ ] 01-03-PLAN.md — TDD: Scorer (all Guideline scoring formulas, level/gravity) (Wave 2)
 - [ ] 01-04-PLAN.md — Piece + LockDelay + TetrisEngine assembly (Wave 3)
@@ -81,7 +81,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Core Game Engine | 0/TBD | Not started | - |
+| 1. Core Game Engine | 1/6 | In progress | - |
 | 2. React Shell + Visual Polish | 0/TBD | Not started | - |
 | 3. Firebase Auth + Leaderboard | 0/TBD | Not started | - |
 | 4. Deployment + Developer Setup | 0/TBD | Not started | - |
