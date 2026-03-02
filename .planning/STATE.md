@@ -10,27 +10,27 @@ See: .planning/PROJECT.md (updated 2026-03-01)
 ## Current Position
 
 Phase: 1 of 4 (Core Game Engine)
-Plan: 4 of TBD in current phase
+Plan: 5 of TBD in current phase
 Status: In progress
-Last activity: 2026-03-02 — Completed 01-04: TetrisEngine with window.game console API (Piece, LockDelay, full game loop)
+Last activity: 2026-03-02 — Completed 01-05: Canvas renderer with OffscreenCanvas neon glow, useGameEngine hook, GameBoard component
 
-Progress: [███░░░░░░░] 20%
+Progress: [████░░░░░░] 25%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 4
+- Total plans completed: 5
 - Average duration: 6.8 min
-- Total execution time: 0.45 hours
+- Total execution time: 0.57 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| Phase 1 | 4 completed | ~27 min | ~6.8 min |
+| Phase 1 | 5 completed | ~34 min | ~6.8 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (6 min), 01-02 (6 min est.), 01-03 (7 min), 01-04 (8 min)
+- Last 5 plans: 01-01 (6 min), 01-02 (6 min est.), 01-03 (7 min), 01-04 (8 min), 01-05 (7 min)
 - Trend: consistent ~6-8 min per plan
 
 *Updated after each plan completion*
@@ -57,6 +57,9 @@ Recent decisions affecting current work:
 - [Phase 01-04]: Gravity accumulator freezes while LockDelay is active — prevents double-locking when piece hits floor mid-accumulation tick
 - [Phase 01-04]: T-spin center at (col+1, row+1) — matches 3x3 T-piece bounding box with 3-corner rule and 5th-kick full promotion
 - [Phase 01-04]: window.game rAF loop capped at dt=100ms to prevent spiral-of-death on tab blur/resume
+- [01-05]: shadowBlur set only in offscreen.ts preRenderPiece() — never on main canvas at render time (GPU paint cost at 60fps with 200 cells)
+- [01-05]: useEffect empty deps array for engine/renderer — created once per mount, never recreated on re-render
+- [01-05]: Ghost piece uses globalAlpha=0.25 with same pre-rendered texture — no separate ghost-colored texture needed
 
 ### Pending Todos
 
@@ -70,5 +73,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-02
-Stopped at: Completed 01-04-PLAN.md — Piece (f995973), TetrisEngine + window.game (2c8e9da). Full engine playable from browser console.
+Stopped at: Completed 01-05-PLAN.md — offscreen pre-rendering (01a58af), useGameEngine + GameBoard (5edd8f4). Game visually playable in browser at 60fps.
 Resume file: None

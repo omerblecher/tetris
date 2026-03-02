@@ -28,7 +28,7 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **SCR-03**: Back-to-back Tetris (4-line clear) and combo bonuses apply multiplier to score
 - [x] **SCR-04**: Level increases every 10 lines cleared; gravity (fall speed) scales with level
 - [x] **SCR-05**: Hard drop adds 2 points per cell dropped; soft drop adds 1 point per cell
-- [ ] **SCR-06**: Current score, level, and lines cleared are displayed in real time during gameplay
+- [x] **SCR-06**: Current score, level, and lines cleared are displayed in real time during gameplay
 
 ### Visual & Aesthetic
 
@@ -133,7 +133,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | SCR-03 | Phase 1 | Complete |
 | SCR-04 | Phase 1 | Complete |
 | SCR-05 | Phase 1 | Complete |
-| SCR-06 | Phase 1 | Pending |
+| SCR-06 | Phase 1 | Complete |
 | VIS-01 | Phase 2 | Pending |
 | VIS-02 | Phase 2 | Pending |
 | VIS-03 | Phase 2 | Pending |
