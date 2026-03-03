@@ -3,15 +3,19 @@ import { useRef } from 'react';
 import { GameBoard } from './components/GameBoard';
 import { SidePanel } from './components/SidePanel';
 import { VirtualControls } from './components/VirtualControls';
+import { AuthHeader } from './components/AuthHeader';
+import { Leaderboard } from './components/Leaderboard';
+import { AuthProvider } from './contexts/AuthContext';
 import { useGameEngine } from './hooks/useGameEngine';
 
 export default function App() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { engineRef, displayState, restart, togglePause } = useGameEngine(canvasRef);
-  const { score, level, lines, isGameOver, nextPieces, heldPiece, bestScore } = displayState;
+  const { score, level, lines, isGameOver, nextPieces, heldPiece, bestScore, isNewPersonalBest } = displayState;
 
   return (
-    <>
+    <AuthProvider>
+      <AuthHeader />
       <div className="game-layout">
         {/* Left panel: Hold piece */}
         <div className="panel-left">
@@ -27,12 +31,13 @@ export default function App() {
             isPaused={displayState.isPaused}
             score={score}
             bestScore={bestScore}
+            isNewPersonalBest={isNewPersonalBest}
             onRestart={restart}
             onTogglePause={togglePause}
           />
         </div>
 
-        {/* Right panel: Score, Level, Lines, Next, Best */}
+        {/* Right panel: Score, Level, Lines, Next, Best + Global Leaderboard */}
         <div className="panel-right">
           <SidePanel
             side="right"
@@ -42,6 +47,9 @@ export default function App() {
             bestScore={bestScore}
             nextPiece={nextPieces[0] ?? null}
           />
+          <div style={{ borderTop: '1px solid rgba(0,240,240,0.1)', marginTop: '12px', paddingTop: '12px' }}>
+            <Leaderboard />
+          </div>
         </div>
       </div>
 
@@ -50,6 +58,6 @@ export default function App() {
         engineRef={engineRef}
         onTogglePause={togglePause}
       />
-    </>
+    </AuthProvider>
   );
 }
