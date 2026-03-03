@@ -1,8 +1,11 @@
 // src/hooks/useGameEngine.ts
 import { useRef, useState, useEffect, RefObject } from 'react';
+import { User } from 'firebase/auth';
 import { TetrisEngine } from '../engine/TetrisEngine';
 import { CanvasRenderer } from '../renderer/CanvasRenderer';
 import { PieceType } from '../engine/types';
+import { useAuth } from '../contexts/AuthContext';
+import { submitScoreIfBest, getPersonalBest } from '../firebase/leaderboard';
 
 const BEST_SCORE_KEY = 'tetris_best';
 
@@ -28,12 +31,18 @@ interface DisplayState {
   heldPiece: PieceType | null;
   bestScore: number;
   isPaused: boolean;
+  isNewPersonalBest: boolean;
 }
 
 export function useGameEngine(canvasRef: RefObject<HTMLCanvasElement | null>) {
   // Game state lives in refs — NEVER in React state
   const engineRef = useRef<TetrisEngine | null>(null);
   const rendererRef = useRef<CanvasRenderer | null>(null);
+
+  // Auth — user from context, kept in ref to avoid stale closure in rAF-adjacent callbacks
+  const { user } = useAuth();
+  const userRef = useRef<User | null>(user);
+  useEffect(() => { userRef.current = user; }, [user]);
 
   // Only display values go into React state (updated via engine callbacks)
   const [displayState, setDisplayState] = useState<DisplayState>({
@@ -45,6 +54,7 @@ export function useGameEngine(canvasRef: RefObject<HTMLCanvasElement | null>) {
     heldPiece: null,
     bestScore: loadBestScore(),
     isPaused: false,
+    isNewPersonalBest: false,
   });
 
   useEffect(() => {
@@ -103,7 +113,20 @@ export function useGameEngine(canvasRef: RefObject<HTMLCanvasElement | null>) {
     });
     engine.on('onGameOver', (finalScore) => {
       const best = saveBestScore(finalScore);
-      setDisplayState(prev => ({ ...prev, score: finalScore, isGameOver: true, bestScore: best }));
+      // Async score submission — IIFE so we don't block the sync callback
+      (async () => {
+        let isNewPB = false;
+        if (userRef.current && finalScore > 0) {
+          isNewPB = await submitScoreIfBest(userRef.current, finalScore);
+        }
+        setDisplayState(prev => ({
+          ...prev,
+          score: finalScore,
+          isGameOver: true,
+          bestScore: best,
+          isNewPersonalBest: isNewPB,
+        }));
+      })();
     });
 
     // Expose engine globally for console testing
@@ -135,6 +158,18 @@ export function useGameEngine(canvasRef: RefObject<HTMLCanvasElement | null>) {
     };
   }, []); // Empty deps — engine is created once, never recreated
 
+  // Sync Firestore personal best when user signs in
+  // Prevents "New personal best!" misfiring on devices with empty localStorage
+  useEffect(() => {
+    if (!user) return;
+    getPersonalBest(user.uid).then((firestorePB) => {
+      setDisplayState(prev => ({
+        ...prev,
+        bestScore: Math.max(prev.bestScore, firestorePB),
+      }));
+    });
+  }, [user]);
+
   const restart = () => {
     engineRef.current?.reset();
     setDisplayState({
@@ -146,6 +181,7 @@ export function useGameEngine(canvasRef: RefObject<HTMLCanvasElement | null>) {
       heldPiece: null,
       bestScore: loadBestScore(),
       isPaused: false,
+      isNewPersonalBest: false,
     });
   };
 
