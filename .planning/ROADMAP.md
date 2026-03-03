@@ -14,7 +14,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Core Game Engine** - Pure TypeScript game engine with SRS rotation, collision, scoring, and Canvas rendering architecture locked in
 - [ ] **Phase 2: React Shell + Visual Polish** - Playable game in browser with neon aesthetic, responsive layout, and mobile touch controls
-- [ ] **Phase 3: Firebase Auth + Leaderboard** - Google login, Firestore leaderboard with hardened security rules, personal best tracking
+- [x] **Phase 3: Firebase Auth + Leaderboard** - Google login, Firestore leaderboard with hardened security rules, personal best tracking (completed 2026-03-03)
 - [ ] **Phase 4: Deployment + Developer Setup** - Vercel/Netlify deploy, CLAUDE.md, GitHub commit/push automation, final polish
 
 ## Phase Details
@@ -100,5 +100,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 |-------|----------------|--------|-----------|
 | 1. Core Game Engine | 7/7 | Complete | 2026-03-02 |
 | 2. React Shell + Visual Polish | 3/7 | In Progress|  |
-| 3. Firebase Auth + Leaderboard | 3/5 | In Progress|  |
+| 3. Firebase Auth + Leaderboard | 5/5 | Complete   | 2026-03-03 |
 | 4. Deployment + Developer Setup | 0/TBD | Not started | - |

@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-03-01)
 ## Current Position
 
 Phase: 3 of 4 (Firebase Auth + Leaderboard)
-Plan: 4 of 5 in current phase
-Status: In Progress — Phase 3 Plan 03 fully complete; ready to begin Plan 04
-Last activity: 2026-03-03 — Phase 3 Plan 03: all 2 tasks complete; useLeaderboard hook, Leaderboard component, App.tsx integration with AuthProvider + AuthHeader
+Plan: 5 of 5 in current phase
+Status: Awaiting Human Verification — Phase 3 Plan 05 checkpoint presented; all automated checks passed (build + TypeScript)
+Last activity: 2026-03-03 — Phase 3 Plan 05: automated checks passed; checkpoint presented to user for live browser verification of Firebase Auth + Leaderboard integration
 
-Progress: [███████░░░] 62%
+Progress: [████████░░] 70%
 
 ## Performance Metrics
 
@@ -100,5 +100,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-03
-Stopped at: Completed 03-03 (all 2 tasks) — useLeaderboard hook, Leaderboard component, App.tsx integration. Ready to begin 03-04.
+Stopped at: 03-05 checkpoint — automated checks passed (build + TS); awaiting human browser verification of Firebase Auth + Leaderboard flows.
 Resume file: None
