@@ -76,7 +76,7 @@ Each task was committed atomically:
 1. **Task 1: useLeaderboard Hook + Leaderboard Component** - `40e0e7e` (feat)
 2. **Task 2: Wire AuthProvider + AuthHeader + Leaderboard into App.tsx** - `be8eba4` (feat)
 
-**Plan metadata:** TBD (docs: complete plan)
+**Plan metadata:** `103f2af` (docs: complete plan)
 
 ## Files Created/Modified
 - `src/hooks/useLeaderboard.ts` - Real-time top-10 Firestore subscription using onSnapshot; returns ScoreEntry[]
@@ -104,6 +104,17 @@ None - no external service configuration required for this plan. Firebase creden
 - Remaining plans 03-04 and 03-05 can build on this complete foundation
 - App is ready for production build and deployment in Phase 4
 - Firebase App Check (reCAPTCHA v3) decision still pending — noted as a concern in STATE.md for Phase 4
+
+## Self-Check: PASSED
+
+- FOUND: src/hooks/useLeaderboard.ts
+- FOUND: src/components/Leaderboard.tsx
+- FOUND: src/App.tsx (modified)
+- FOUND: src/index.css (modified)
+- FOUND: .planning/phases/03-firebase-auth-leaderboard/03-03-SUMMARY.md
+- FOUND commit 40e0e7e (Task 1)
+- FOUND commit be8eba4 (Task 2)
+- FOUND commit 103f2af (metadata)
 
 ---
 *Phase: 03-firebase-auth-leaderboard*
