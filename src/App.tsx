@@ -8,13 +8,14 @@ import { Leaderboard } from './components/Leaderboard';
 import { AuthProvider } from './contexts/AuthContext';
 import { useGameEngine } from './hooks/useGameEngine';
 
-export default function App() {
+// Inner component — rendered inside AuthProvider so useGameEngine can call useAuth()
+function GameApp() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { engineRef, displayState, restart, togglePause } = useGameEngine(canvasRef);
   const { score, level, lines, isGameOver, nextPieces, heldPiece, bestScore, isNewPersonalBest } = displayState;
 
   return (
-    <AuthProvider>
+    <>
       <AuthHeader />
       <div className="game-layout">
         {/* Left panel: Hold piece */}
@@ -58,6 +59,14 @@ export default function App() {
         engineRef={engineRef}
         onTogglePause={togglePause}
       />
+    </>
+  );
+}
+
+export default function App() {
+  return (
+    <AuthProvider>
+      <GameApp />
     </AuthProvider>
   );
 }
