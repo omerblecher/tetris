@@ -3,6 +3,7 @@ import type { CSSProperties, RefObject } from 'react';
 import { TetrisEngine } from '../engine/TetrisEngine';
 import { useKeyboard } from '../hooks/useKeyboard';
 import { useTouchControls } from '../hooks/useTouchControls';
+import { useAuth } from '../contexts/AuthContext';
 
 interface GameBoardProps {
   canvasRef: RefObject<HTMLCanvasElement | null>;
@@ -11,6 +12,7 @@ interface GameBoardProps {
   isPaused: boolean;
   score: number;
   bestScore: number;
+  isNewPersonalBest: boolean;
   onRestart: () => void;
   onTogglePause: () => void;
 }
@@ -59,9 +61,11 @@ export function GameBoard({
   isPaused,
   score,
   bestScore,
+  isNewPersonalBest,
   onRestart,
   onTogglePause,
 }: GameBoardProps) {
+  const { user, signIn } = useAuth();
   useKeyboard(engineRef);
   useTouchControls(canvasRef, engineRef);
 
@@ -87,6 +91,21 @@ export function GameBoard({
         <div style={overlayStyle}>
           <div style={titleStyle('#ff2060')}>GAME OVER</div>
 
+          {/* New personal best banner — celebratory neon glow, conditional */}
+          {isNewPersonalBest && (
+            <div style={{
+              fontSize: '13px',
+              letterSpacing: '2px',
+              color: 'var(--color-accent)',
+              textShadow: '0 0 12px var(--color-accent), 0 0 24px var(--color-accent)',
+              fontFamily: 'Orbitron, monospace',
+              marginBottom: '10px',
+              animation: 'none',
+            }}>
+              NEW PERSONAL BEST!
+            </div>
+          )}
+
           <div style={{ textAlign: 'center', color: 'var(--color-text)', fontSize: '13px', letterSpacing: '1px' }}>
             <div style={{ marginBottom: '4px' }}>
               SCORE <span style={{ color: 'var(--color-accent)', fontWeight: '700' }}>
@@ -100,16 +119,21 @@ export function GameBoard({
             </div>
           </div>
 
+          {/* Guest sign-in button — shown only when not authenticated */}
+          {!user && (
+            <button
+              onClick={() => signIn()}
+              style={btnStyle('var(--color-accent)')}
+            >
+              SIGN IN WITH GOOGLE TO SAVE YOUR SCORE
+            </button>
+          )}
+
           <button style={btnStyle('var(--color-accent)')} onClick={onRestart}>
             PLAY AGAIN
           </button>
 
-          {/* Phase 3 placeholder — non-functional until leaderboard exists */}
-          <button
-            style={{ ...btnStyle('#bf00ff'), opacity: 0.5, cursor: 'not-allowed' }}
-            disabled
-            title="Coming in Phase 3"
-          >
+          <button style={btnStyle('#bf00ff')}>
             LEADERBOARD
           </button>
         </div>
