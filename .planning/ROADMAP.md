@@ -76,7 +76,7 @@ Plans:
 Plans:
 - [ ] 03-01-PLAN.md — Firebase SDK + config + auth functions + Firestore leaderboard functions + hardened security rules (Wave 1)
 - [ ] 03-02-PLAN.md — AuthContext + AuthHeader + extend useGameEngine for score submission + PB sync (Wave 2)
-- [ ] 03-03-PLAN.md — useLeaderboard hook + Leaderboard component + App.tsx AuthProvider/AuthHeader/Leaderboard integration (Wave 3)
+- [x] 03-03-PLAN.md — useLeaderboard hook + Leaderboard component + App.tsx AuthProvider/AuthHeader/Leaderboard integration (Wave 3)
 - [ ] 03-04-PLAN.md — GameBoard game-over overlay: new PB banner, guest sign-in button, enabled LEADERBOARD button (Wave 3)
 - [ ] 03-05-PLAN.md — Human verification checkpoint: full Firebase integration end-to-end (Wave 4)
 
@@ -100,5 +100,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 |-------|----------------|--------|-----------|
 | 1. Core Game Engine | 7/7 | Complete | 2026-03-02 |
 | 2. React Shell + Visual Polish | 3/7 | In Progress|  |
-| 3. Firebase Auth + Leaderboard | 2/5 | In Progress|  |
+| 3. Firebase Auth + Leaderboard | 3/5 | In Progress|  |
 | 4. Deployment + Developer Setup | 0/TBD | Not started | - |

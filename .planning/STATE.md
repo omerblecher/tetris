@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-03-01)
 ## Current Position
 
 Phase: 3 of 4 (Firebase Auth + Leaderboard)
-Plan: 3 of 5 in current phase
-Status: In Progress — Phase 3 Plan 02 fully complete; ready to begin Plan 03 (Leaderboard panel)
-Last activity: 2026-03-03 — Phase 3 Plan 02: all 2 tasks complete; AuthContext, AuthHeader, useGameEngine extended with isNewPersonalBest + score submission
+Plan: 4 of 5 in current phase
+Status: In Progress — Phase 3 Plan 03 fully complete; ready to begin Plan 04
+Last activity: 2026-03-03 — Phase 3 Plan 03: all 2 tasks complete; useLeaderboard hook, Leaderboard component, App.tsx integration with AuthProvider + AuthHeader
 
-Progress: [██████░░░░] 57%
+Progress: [███████░░░] 62%
 
 ## Performance Metrics
 
@@ -40,6 +40,7 @@ Progress: [██████░░░░] 57%
 | Phase 02 P03 | 8 min | 2 tasks | 4 files |
 | Phase 03 P01 | 15 | 2 tasks | 8 files |
 | Phase 03 P02 | 2 min | 2 tasks | 3 files |
+| Phase 03 P03 | 6 min | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -83,6 +84,9 @@ Recent decisions affecting current work:
 - [Phase 03-02]: Async IIFE in onGameOver — sync engine callback cannot be async; IIFE lets submitScoreIfBest run without blocking
 - [Phase 03-02]: loading guard returns placeholder div (not null) — preserves layout height during auth resolution to prevent layout shift
 - [Phase 03-02]: max(localStorage, Firestore) on sign-in — protects against false new-PB banner on fresh devices
+- [Phase 03-03]: Right panel width increased 160px → 180px — leaderboard rows (rank + name + score) need extra space for readable display without truncating names
+- [Phase 03-03]: onSnapshot returned directly from useEffect (not wrapped in callback) — onSnapshot return value IS the unsubscribe function; returning it directly is the idiomatic React cleanup pattern
+- [Phase 03-03]: Leaderboard always visible below SidePanel with thin rgba divider — matches locked user decision (not a modal)
 
 ### Pending Todos
 
@@ -96,5 +100,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-03
-Stopped at: Completed 03-02 (all 2 tasks) — AuthContext, AuthHeader, useGameEngine extended. Ready to begin 03-03 (Leaderboard panel).
+Stopped at: Completed 03-03 (all 2 tasks) — useLeaderboard hook, Leaderboard component, App.tsx integration. Ready to begin 03-04.
 Resume file: None
