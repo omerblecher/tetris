@@ -11,8 +11,8 @@ See: .planning/PROJECT.md (updated 2026-03-01)
 
 Phase: 3 of 4 (Firebase Auth + Leaderboard)
 Plan: 2 of 5 in current phase
-Status: In Progress — Phase 3 Plan 01 complete (awaiting Task 3 checkpoint: user fills .env)
-Last activity: 2026-03-03 — Phase 3 Plan 01: Firebase SDK installed, config/auth/leaderboard modules, hardened Firestore rules, .env.example
+Status: In Progress — Phase 3 Plan 01 fully complete; ready to begin Plan 02 (AuthContext + useAuth hook)
+Last activity: 2026-03-03 — Phase 3 Plan 01: all 3 tasks complete; .env filled with real Firebase credentials; ready for 03-02
 
 Progress: [█████░░░░░] 50%
 
@@ -91,5 +91,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-03
-Stopped at: Completed 03-01 Task 2 (d4877b1) — Firebase SDK + all infrastructure files. At Task 3 checkpoint: user must fill .env with Firebase config values, then type ".env filled" to continue to 03-02.
+Stopped at: Completed 03-01 (all 3 tasks) — .env filled, plan fully complete. Ready to begin 03-02 (AuthContext + useAuth hook).
 Resume file: None

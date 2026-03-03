@@ -74,7 +74,7 @@ completed: 2026-03-03
 - **Duration:** ~15 min
 - **Started:** 2026-03-02T22:06:05Z
 - **Completed:** 2026-03-02T22:21:00Z
-- **Tasks:** 2 of 3 automated (Task 1 and Task 3 are human-action checkpoints)
+- **Tasks:** 3 of 3 complete (Tasks 1 and 3 were human-action checkpoints, both resolved)
 - **Files modified:** 8
 
 ## Accomplishments
@@ -90,7 +90,7 @@ Each task was committed atomically:
 
 1. **Task 1: Firebase Project Setup** — human-action checkpoint (user created Firebase project, enabled Google Auth, created Firestore DB)
 2. **Task 2: Install Firebase + Create Firebase Infrastructure Files** — `d4877b1` (feat)
-3. **Task 3: User Fills In .env** — human-action checkpoint (pending: user fills in VITE_FIREBASE_* values)
+3. **Task 3: User Fills In .env** — human-action checkpoint (complete: user filled in all VITE_FIREBASE_* values; .env present at project root, not tracked by git)
 
 ## Files Created/Modified
 
@@ -134,13 +134,10 @@ None — all planned work executed as specified. TypeScript compiled clean (`npx
 
 ## User Setup Required
 
-Task 3 is a blocking human-action checkpoint:
-
-1. Copy `.env.example` to `.env`: `cp .env.example .env`
-2. Open `.env` in your editor
-3. Fill in each `VITE_FIREBASE_*` value from the Firebase Console config object
-4. Save — verify `.env` is NOT tracked by git: `git status` should NOT show `.env`
-5. Type `.env filled` to continue to Tasks 03-02 through 03-05
+All user setup complete:
+- Task 1: Firebase project created, Google Auth enabled, Firestore DB created (human-action checkpoint — resolved)
+- Task 3: `.env` filled with all 6 `VITE_FIREBASE_*` values from Firebase Console (human-action checkpoint — resolved)
+- `.env` is present at project root and confirmed NOT tracked by git (`git status` does not show `.env`)
 
 ## Self-Check
 
