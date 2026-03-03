@@ -89,7 +89,11 @@ Plans:
   2. Firebase config is loaded from environment variables; `.env` is in `.gitignore`; no secrets appear in the committed codebase
   3. Project is deployed to Vercel or Netlify; pushing to the main branch triggers an automatic redeploy; the live URL is accessible and fully functional
   4. All project files are committed to git with a clean history and pushed to the remote GitHub repository
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [ ] 04-01-PLAN.md — CLAUDE.md + README.md creation, env var verification (Wave 1)
+- [ ] 04-02-PLAN.md — Git branch rename to main, final commit, GitHub push, Vercel dashboard deploy, Firebase Authorized Domains (Wave 2)
 
 ## Progress
 
@@ -101,4 +105,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | 1. Core Game Engine | 7/7 | Complete | 2026-03-02 |
 | 2. React Shell + Visual Polish | 3/7 | In Progress|  |
 | 3. Firebase Auth + Leaderboard | 5/5 | Complete   | 2026-03-03 |
-| 4. Deployment + Developer Setup | 0/TBD | Not started | - |
+| 4. Deployment + Developer Setup | 0/2 | Not started | - |
