@@ -118,6 +118,16 @@ None - no external service configuration required.
 - Canvas renderer (Phase 2) receives immutable snapshots via engine.state
 - Engine events ready: onLineClear (with B2B flag), onLevelUp, onPieceLock (with T-spin type), onScoreUpdate, onGameOver, onHold
 
+## Self-Check: PASSED
+
+- src/engine/Piece.ts: FOUND
+- src/engine/LockDelay.ts: FOUND
+- src/engine/TetrisEngine.ts: FOUND
+- .planning/phases/01-core-game-engine/01-04-SUMMARY.md: FOUND
+- Commit f995973 (Piece + LockDelay): FOUND
+- Commit 2c8e9da (TetrisEngine + window.game): FOUND
+- Build: PASSED (zero TypeScript errors, 205kB bundle)
+
 ---
 *Phase: 01-core-game-engine*
 *Completed: 2026-03-02*
