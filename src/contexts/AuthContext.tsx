@@ -6,6 +6,7 @@ import { signInWithGoogle, signOutUser } from '../firebase/auth';
 interface AuthContextType {
   user: User | null;
   loading: boolean;
+  isSigningIn: boolean;
   signIn: () => Promise<void>;
   signOut: () => Promise<void>;
 }
@@ -15,6 +16,7 @@ const AuthContext = createContext<AuthContextType | null>(null);
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  const [isSigningIn, setIsSigningIn] = useState(false);
 
   useEffect(() => {
     // onAuthStateChanged returns unsubscribe — return it for cleanup
@@ -24,8 +26,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     });
   }, []);
 
+  async function signIn() {
+    setIsSigningIn(true);
+    try {
+      await signInWithGoogle();
+    } finally {
+      setIsSigningIn(false);
+    }
+  }
+
   return (
-    <AuthContext.Provider value={{ user, loading, signIn: signInWithGoogle, signOut: signOutUser }}>
+    <AuthContext.Provider value={{ user, loading, isSigningIn, signIn, signOut: signOutUser }}>
       {children}
     </AuthContext.Provider>
   );

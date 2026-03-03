@@ -40,7 +40,7 @@ export function useGameEngine(canvasRef: RefObject<HTMLCanvasElement | null>) {
   const rendererRef = useRef<CanvasRenderer | null>(null);
 
   // Auth — user from context, kept in ref to avoid stale closure in rAF-adjacent callbacks
-  const { user } = useAuth();
+  const { user, isSigningIn } = useAuth();
   const userRef = useRef<User | null>(user);
   useEffect(() => { userRef.current = user; }, [user]);
 
@@ -169,6 +169,26 @@ export function useGameEngine(canvasRef: RefObject<HTMLCanvasElement | null>) {
       }));
     });
   }, [user]);
+
+  // Pause game while Google sign-in popup is open, resume when it closes
+  const wasManuallyPausedRef = useRef(false);
+  useEffect(() => {
+    const engine = engineRef.current;
+    if (!engine) return;
+    if (isSigningIn) {
+      wasManuallyPausedRef.current = engine.isPaused;
+      if (!engine.isPaused && !engine.isGameOver) {
+        engine.pause();
+        setDisplayState(prev => ({ ...prev, isPaused: true }));
+      }
+    } else {
+      // Only resume if we were the ones who paused it
+      if (!wasManuallyPausedRef.current && engine.isPaused && !engine.isGameOver) {
+        engine.resume();
+        setDisplayState(prev => ({ ...prev, isPaused: false }));
+      }
+    }
+  }, [isSigningIn]);
 
   const restart = () => {
     engineRef.current?.reset();
