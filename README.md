@@ -2,7 +2,7 @@
 
 > Neon synthwave Tetris with a real global leaderboard.
 >
-> **Live:** [https://YOUR-PROJECT.vercel.app](https://YOUR-PROJECT.vercel.app)
+> **Live:** [https://tetris-wheat-omega.vercel.app](https://tetris-wheat-omega.vercel.app)
 
 A browser-based Tetris implementation featuring the full Tetris Guideline ruleset (SRS rotation with wall kicks, 7-bag randomizer, lock delay, T-spin detection), a neon/synthwave aesthetic rendered entirely on HTML5 Canvas, and a Firebase-powered global leaderboard with Google authentication.
 

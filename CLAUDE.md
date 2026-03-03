@@ -1,6 +1,6 @@
 # CLAUDE.md — Tetris Project Guide
 
-<!-- Live URL: https://YOUR-PROJECT.vercel.app -->
+<!-- Live URL: https://tetris-wheat-omega.vercel.app -->
 
 AI assistant project guide. Read this before making any changes. Every decision here is locked — it was made for a specific reason documented below.
 
