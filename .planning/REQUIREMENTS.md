@@ -72,10 +72,10 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Developer & Project
 
-- [ ] **DEV-01**: CLAUDE.md file created with project rules, coding conventions, and AI development guidelines
+- [x] **DEV-01**: CLAUDE.md file created with project rules, coding conventions, and AI development guidelines
 - [ ] **DEV-02**: After each phase completes, all changed files are committed to git and pushed to remote GitHub repository
 - [ ] **DEV-03**: Project deployed to Vercel or Netlify with auto-deploy on push to main branch
-- [ ] **DEV-04**: Firebase config stored in environment variables (never hardcoded), `.env` in `.gitignore`
+- [x] **DEV-04**: Firebase config stored in environment variables (never hardcoded), `.env` in `.gitignore`
 
 ## v2 Requirements
 
@@ -159,10 +159,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 | LDB-03 | Phase 3 | Complete |
 | LDB-04 | Phase 3 | Complete |
 | LDB-05 | Phase 3 | Complete |
-| DEV-01 | Phase 4 | Pending |
+| DEV-01 | Phase 4 | Complete |
 | DEV-02 | Phase 4 | Pending |
 | DEV-03 | Phase 4 | Pending |
-| DEV-04 | Phase 4 | Pending |
+| DEV-04 | Phase 4 | Complete |
 
 **Coverage:**
 - v1 requirements: 46 total

@@ -9,12 +9,12 @@ See: .planning/PROJECT.md (updated 2026-03-01)
 
 ## Current Position
 
-Phase: 3 of 4 (Firebase Auth + Leaderboard)
-Plan: 5 of 5 in current phase
-Status: Awaiting Human Verification — Phase 3 Plan 05 checkpoint presented; all automated checks passed (build + TypeScript)
-Last activity: 2026-03-03 — Phase 3 Plan 05: automated checks passed; checkpoint presented to user for live browser verification of Firebase Auth + Leaderboard integration
+Phase: 4 of 4 (Deployment + Developer Setup)
+Plan: 1 of 2 in current phase
+Status: In Progress — Phase 4 Plan 01 complete (CLAUDE.md + README.md created); Phase 4 Plan 02 pending
+Last activity: 2026-03-03 — Phase 4 Plan 01: CLAUDE.md and README.md created; DEV-04 env var setup confirmed
 
-Progress: [████████░░] 70%
+Progress: [█████████░] 85%
 
 ## Performance Metrics
 
@@ -87,6 +87,8 @@ Recent decisions affecting current work:
 - [Phase 03-03]: Right panel width increased 160px → 180px — leaderboard rows (rank + name + score) need extra space for readable display without truncating names
 - [Phase 03-03]: onSnapshot returned directly from useEffect (not wrapped in callback) — onSnapshot return value IS the unsubscribe function; returning it directly is the idiomatic React cleanup pattern
 - [Phase 03-03]: Leaderboard always visible below SidePanel with thin rgba divider — matches locked user decision (not a modal)
+- [Phase 04-01]: CLAUDE.md written at 134 lines — dense and authoritative; 7 never-do items with specific consequences (performance numbers, security impacts)
+- [Phase 04-01]: DEV-04 confirmed already complete in Phase 3 — config.ts, .env.example, .gitignore all correct; no code changes needed
 
 ### Pending Todos
 
@@ -100,5 +102,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-03
-Stopped at: 03-05 checkpoint — automated checks passed (build + TS); awaiting human browser verification of Firebase Auth + Leaderboard flows.
+Stopped at: Completed 04-01-PLAN.md — CLAUDE.md and README.md created; Phase 4 Plan 02 (Vercel deployment) is next.
 Resume file: None
