@@ -56,19 +56,19 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Authentication
 
-- [ ] **AUTH-01**: Player can sign in with Google account (Firebase Auth, `signInWithPopup`)
-- [ ] **AUTH-02**: Player can sign out at any time
-- [ ] **AUTH-03**: Auth state persists across browser sessions (player stays logged in)
-- [ ] **AUTH-04**: Player can play without logging in (guest mode); leaderboard submission requires auth
+- [x] **AUTH-01**: Player can sign in with Google account (Firebase Auth, `signInWithPopup`)
+- [x] **AUTH-02**: Player can sign out at any time
+- [x] **AUTH-03**: Auth state persists across browser sessions (player stays logged in)
+- [x] **AUTH-04**: Player can play without logging in (guest mode); leaderboard submission requires auth
 - [ ] **AUTH-05**: Display name from Google account is shown on the leaderboard
 
 ### Leaderboard
 
 - [ ] **LDB-01**: Global leaderboard displays top 10 all-time scores with player name and score
 - [ ] **LDB-02**: Player's personal best score is stored in Firestore per UID and displayed on game over screen
-- [ ] **LDB-03**: After game over (authenticated players), score is submitted to Firestore only if it beats personal best
-- [ ] **LDB-04**: Leaderboard is readable by all (including guests); write is restricted to authenticated user's own record
-- [ ] **LDB-05**: Firestore security rules enforce: authenticated writes only, UID matches auth user, score is a number within valid range, records are write-once-update (score only increases)
+- [x] **LDB-03**: After game over (authenticated players), score is submitted to Firestore only if it beats personal best
+- [x] **LDB-04**: Leaderboard is readable by all (including guests); write is restricted to authenticated user's own record
+- [x] **LDB-05**: Firestore security rules enforce: authenticated writes only, UID matches auth user, score is a number within valid range, records are write-once-update (score only increases)
 
 ### Developer & Project
 
@@ -149,16 +149,16 @@ Which phases cover which requirements. Updated during roadmap creation.
 | LAY-02 | Phase 2 | Pending |
 | LAY-03 | Phase 2 | Pending |
 | LAY-04 | Phase 2 | Pending |
-| AUTH-01 | Phase 3 | Pending |
-| AUTH-02 | Phase 3 | Pending |
-| AUTH-03 | Phase 3 | Pending |
-| AUTH-04 | Phase 3 | Pending |
+| AUTH-01 | Phase 3 | Complete |
+| AUTH-02 | Phase 3 | Complete |
+| AUTH-03 | Phase 3 | Complete |
+| AUTH-04 | Phase 3 | Complete |
 | AUTH-05 | Phase 3 | Pending |
 | LDB-01 | Phase 3 | Pending |
 | LDB-02 | Phase 3 | Pending |
-| LDB-03 | Phase 3 | Pending |
-| LDB-04 | Phase 3 | Pending |
-| LDB-05 | Phase 3 | Pending |
+| LDB-03 | Phase 3 | Complete |
+| LDB-04 | Phase 3 | Complete |
+| LDB-05 | Phase 3 | Complete |
 | DEV-01 | Phase 4 | Pending |
 | DEV-02 | Phase 4 | Pending |
 | DEV-03 | Phase 4 | Pending |

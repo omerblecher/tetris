@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-03-01)
 
 **Core value:** A beautiful, playable Tetris experience with a real global leaderboard — the neon aesthetic and smooth gameplay make it worth coming back to.
-**Current focus:** Phase 2 — React Shell + Visual Polish
+**Current focus:** Phase 3 — Firebase Auth + Leaderboard
 
 ## Current Position
 
-Phase: 2 of 4 (React Shell + Visual Polish)
-Plan: 4 of 7 in current phase
-Status: In Progress — Phase 2 Plan 03 complete
-Last activity: 2026-03-02 — Phase 2 Plan 03: useKeyboard hook with DAS/ARR (133ms/33ms), P-key pause, isPaused/isGameOver getters
+Phase: 3 of 4 (Firebase Auth + Leaderboard)
+Plan: 2 of 5 in current phase
+Status: In Progress — Phase 3 Plan 01 complete (awaiting Task 3 checkpoint: user fills .env)
+Last activity: 2026-03-03 — Phase 3 Plan 01: Firebase SDK installed, config/auth/leaderboard modules, hardened Firestore rules, .env.example
 
-Progress: [████░░░░░░] 40%
+Progress: [█████░░░░░] 50%
 
 ## Performance Metrics
 
@@ -38,6 +38,7 @@ Progress: [████░░░░░░] 40%
 | Phase 02 P01 | 2 min | 2 tasks | 8 files |
 | Phase 02 P02 | 5 min | 2 tasks | 2 files |
 | Phase 02 P03 | 8 min | 2 tasks | 4 files |
+| Phase 03 P01 | 15 | 2 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -74,6 +75,9 @@ Recent decisions affecting current work:
 - [02-03]: DAS_DELAY=133ms, ARR_INTERVAL=33ms — TETR.IO standard; DAS callbacks re-check isPaused at each tick to block movement if paused mid-hold
 - [02-03]: Control key mapped to CCW rotate without e.preventDefault() — browser undo not intercepted
 - [02-03]: Blur handler calls softDrop(false) in addition to clearing DAS intervals — prevents stuck soft-drop state on alt-tab
+- [Phase 03-01]: firebase@^12 modular SDK — identical API paths to v11, tree-shaking works with Vite, 0 vulnerabilities
+- [Phase 03-01]: Score cap 10,000,000 in Firestore rules — 3-5x above world records; blocks spoofed values without affecting real play
+- [Phase 03-01]: setDoc (not updateDoc) in submitScoreIfBest — safe for first-time users with no existing document
 
 ### Pending Todos
 
@@ -81,11 +85,11 @@ None yet.
 
 ### Blockers/Concerns
 
-- [Phase 3]: Validate score cap (999,999) against theoretical maximum before hardcoding into Firestore security rules — Scorer implemented; max score analysis can now be done.
-- [Phase 3]: Decide on Firebase App Check (reCAPTCHA v3) before Phase 3 — easier to enable at launch than retroactively.
+- [Phase 3 - RESOLVED]: Score cap set to 10,000,000 in Firestore rules — verified 3-5x above world records during Phase 3 research.
+- [Phase 3]: Decide on Firebase App Check (reCAPTCHA v3) before Phase 4 deployment — easier to enable at launch than retroactively.
 
 ## Session Continuity
 
-Last session: 2026-03-02
-Stopped at: Completed 02-03-PLAN.md — useKeyboard DAS/ARR hook, P-key pause, isPaused/isGameOver getters (9327f6f). CTR-01, CTR-04 satisfied.
+Last session: 2026-03-03
+Stopped at: Completed 03-01 Task 2 (d4877b1) — Firebase SDK + all infrastructure files. At Task 3 checkpoint: user must fill .env with Firebase config values, then type ".env filled" to continue to 03-02.
 Resume file: None
