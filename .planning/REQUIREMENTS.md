@@ -64,7 +64,7 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Leaderboard
 
-- [ ] **LDB-01**: Global leaderboard displays top 10 all-time scores with player name and score
+- [x] **LDB-01**: Global leaderboard displays top 10 all-time scores with player name and score
 - [x] **LDB-02**: Player's personal best score is stored in Firestore per UID and displayed on game over screen
 - [x] **LDB-03**: After game over (authenticated players), score is submitted to Firestore only if it beats personal best
 - [x] **LDB-04**: Leaderboard is readable by all (including guests); write is restricted to authenticated user's own record
@@ -154,7 +154,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | AUTH-03 | Phase 3 | Complete |
 | AUTH-04 | Phase 3 | Complete |
 | AUTH-05 | Phase 3 | Complete |
-| LDB-01 | Phase 3 | Pending |
+| LDB-01 | Phase 3 | Complete |
 | LDB-02 | Phase 3 | Complete |
 | LDB-03 | Phase 3 | Complete |
 | LDB-04 | Phase 3 | Complete |
