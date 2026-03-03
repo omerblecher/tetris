@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-03-01)
 ## Current Position
 
 Phase: 3 of 4 (Firebase Auth + Leaderboard)
-Plan: 2 of 5 in current phase
-Status: In Progress — Phase 3 Plan 01 fully complete; ready to begin Plan 02 (AuthContext + useAuth hook)
-Last activity: 2026-03-03 — Phase 3 Plan 01: all 3 tasks complete; .env filled with real Firebase credentials; ready for 03-02
+Plan: 3 of 5 in current phase
+Status: In Progress — Phase 3 Plan 02 fully complete; ready to begin Plan 03 (Leaderboard panel)
+Last activity: 2026-03-03 — Phase 3 Plan 02: all 2 tasks complete; AuthContext, AuthHeader, useGameEngine extended with isNewPersonalBest + score submission
 
-Progress: [█████░░░░░] 50%
+Progress: [██████░░░░] 57%
 
 ## Performance Metrics
 
@@ -39,6 +39,7 @@ Progress: [█████░░░░░] 50%
 | Phase 02 P02 | 5 min | 2 tasks | 2 files |
 | Phase 02 P03 | 8 min | 2 tasks | 4 files |
 | Phase 03 P01 | 15 | 2 tasks | 8 files |
+| Phase 03 P02 | 2 min | 2 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -78,6 +79,10 @@ Recent decisions affecting current work:
 - [Phase 03-01]: firebase@^12 modular SDK — identical API paths to v11, tree-shaking works with Vite, 0 vulnerabilities
 - [Phase 03-01]: Score cap 10,000,000 in Firestore rules — 3-5x above world records; blocks spoofed values without affecting real play
 - [Phase 03-01]: setDoc (not updateDoc) in submitScoreIfBest — safe for first-time users with no existing document
+- [Phase 03-02]: userRef pattern — user from useAuth() in rAF-adjacent onGameOver callback stored in useRef to avoid stale closure
+- [Phase 03-02]: Async IIFE in onGameOver — sync engine callback cannot be async; IIFE lets submitScoreIfBest run without blocking
+- [Phase 03-02]: loading guard returns placeholder div (not null) — preserves layout height during auth resolution to prevent layout shift
+- [Phase 03-02]: max(localStorage, Firestore) on sign-in — protects against false new-PB banner on fresh devices
 
 ### Pending Todos
 
@@ -91,5 +96,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-03
-Stopped at: Completed 03-01 (all 3 tasks) — .env filled, plan fully complete. Ready to begin 03-02 (AuthContext + useAuth hook).
+Stopped at: Completed 03-02 (all 2 tasks) — AuthContext, AuthHeader, useGameEngine extended. Ready to begin 03-03 (Leaderboard panel).
 Resume file: None
