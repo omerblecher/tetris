@@ -1,0 +1,37 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /scores/{userId} {
+      // Anyone (including guests) can read the leaderboard
+      allow read: if true;
+
+      // Create: authenticated user, UID matches path, valid initial data
+      allow create: if request.auth != null
+        && request.auth.uid == userId
+        && request.resource.data.uid == userId
+        && request.resource.data.score is int
+        && request.resource.data.score >= 0
+        && request.resource.data.score <= 10000000
+        && request.resource.data.displayName is string
+        && request.resource.data.keys().hasOnly(['uid', 'score', 'displayName']);
+
+      // Update: same auth checks + score can only increase (not equal, must be strictly greater)
+      allow update: if request.auth != null
+        && request.auth.uid == userId
+        && request.resource.data.score is int
+        && request.resource.data.score > resource.data.score
+        && request.resource.data.score <= 10000000
+        && request.resource.data.displayName is string
+        && request.resource.data.keys().hasOnly(['uid', 'score', 'displayName']);
+
+      // No client deletes — scores are permanent
+      allow delete: if false;
+    }
+
+    // Deny all other paths by default
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
