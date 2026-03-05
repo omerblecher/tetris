@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 import { User, onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../firebase/config';
-import { signInWithGoogle, signOutUser } from '../firebase/auth';
+import { signInWithGoogle, signOutUser, handleRedirectResult } from '../firebase/auth';
 
 interface AuthContextType {
   user: User | null;
@@ -19,6 +19,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [isSigningIn, setIsSigningIn] = useState(false);
 
   useEffect(() => {
+    // Pick up Google Sign-In result after redirect (Capacitor/mobile WebView flow)
+    handleRedirectResult().catch(() => {});
     // onAuthStateChanged returns unsubscribe — return it for cleanup
     return onAuthStateChanged(auth, (firebaseUser) => {
       setUser(firebaseUser);
