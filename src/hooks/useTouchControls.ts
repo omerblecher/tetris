@@ -49,6 +49,8 @@ export function useTouchControls(
 
       const dx = t.clientX - lastMoveX;
       const dy = t.clientY - startY;
+      const totalDxFromStart = Math.abs(t.clientX - startX);
+      const totalDyFromStart = Math.abs(dy);
 
       // Horizontal swipe: move piece
       if (Math.abs(dx) >= effectiveSwipe) {
@@ -58,14 +60,15 @@ export function useTouchControls(
         moved = true;
       }
 
-      // Swipe down: soft drop
-      if (dy > effectiveSwipe && !moved) {
+      // Swipe down: soft drop — require vertical movement to dominate horizontal
+      if (dy > effectiveSwipe && !moved && totalDyFromStart > totalDxFromStart) {
         engine.softDrop(true);
         moved = true;
       }
 
-      // Swipe up: hard drop (dy is negative for upward swipe)
-      if (dy < -effectiveSwipe && !moved) {
+      // Swipe up: hard drop — require vertical movement to dominate horizontal
+      // This prevents a tap with slight upward drift from triggering a hard drop
+      if (dy < -effectiveSwipe && !moved && totalDyFromStart > totalDxFromStart) {
         engine.hardDrop();
         moved = true;
       }

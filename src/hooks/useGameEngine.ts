@@ -84,7 +84,11 @@ export function useGameEngine(canvasRef: RefObject<HTMLCanvasElement | null>) {
         ] as [number, number]);
       }
       rendererRef.current?.triggerLockFlash(lastLockedCells);
-      setDisplayState(prev => ({ ...prev, nextPieces: engineRef.current?.state.nextPieces ?? [] }));
+    });
+    engine.on('onPieceSpawn', (nextPieces) => {
+      // Update next pieces AFTER bag.next() has been called, so peek(3) reflects
+      // the true upcoming pieces (not the piece that just became active)
+      setDisplayState(prev => ({ ...prev, nextPieces }));
     });
     engine.on('onLineClear', (_linesCleared, _score, _tSpin, _b2b, clearedRows) => {
       rendererRef.current?.triggerLineClear(clearedRows);

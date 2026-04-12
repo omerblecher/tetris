@@ -40,6 +40,7 @@ export interface GameEvents {
   onGameOver: (finalScore: number) => void;
   onLevelUp: (newLevel: number) => void;
   onPieceLock: (pieceType: PieceType, tSpin: TSpinType) => void;
+  onPieceSpawn: (nextPieces: PieceType[]) => void;
   onScoreUpdate: (score: number, level: number, lines: number) => void;
   onHold: (heldType: PieceType, swappedFrom: PieceType) => void;
 }

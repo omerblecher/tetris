@@ -208,6 +208,9 @@ export class TetrisEngine {
     this.lockDelay.deactivate();
     this.gravityAccumulator = 0;
 
+    // Notify subscribers of upcoming pieces now that bag has advanced
+    this.events.onPieceSpawn?.(this.bag.peek(3));
+
     // Game over: spawned piece immediately collides
     if (!this.board.isValid(this.activePiece.minos, this.activePiece.col, this.activePiece.row)) {
       this._isGameOver = true;
