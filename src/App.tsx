@@ -7,11 +7,13 @@ import { AuthHeader } from './components/AuthHeader';
 import { Leaderboard } from './components/Leaderboard';
 import { AuthProvider } from './contexts/AuthContext';
 import { useGameEngine } from './hooks/useGameEngine';
+import { useAdMob } from './hooks/useAdMob';
 
 // Inner component — rendered inside AuthProvider so useGameEngine can call useAuth()
 function GameApp() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { engineRef, displayState, restart, togglePause } = useGameEngine(canvasRef);
+  useAdMob();
   const { score, level, lines, isGameOver, nextPieces, heldPiece, bestScore, isNewPersonalBest } = displayState;
 
   return (

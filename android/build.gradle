@@ -21,6 +21,8 @@ allprojects {
     repositories {
         google()
         mavenCentral()
+        maven { url 'https://android-sdk.is.com/' }          // ironSource
+        maven { url 'https://packagecloud.io/smartadserver/android/maven2/' } // Equativ
     }
 }
 
