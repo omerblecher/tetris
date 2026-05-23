@@ -7,6 +7,7 @@ import {
   BannerAdPosition,
   BannerAdPluginEvents,
   AdMobBannerSize,
+  MaxAdContentRating,
 } from '@capacitor-community/admob';
 
 const BANNER_AD_UNIT_ID = 'ca-app-pub-4227443066128564/3020985391';
@@ -18,7 +19,9 @@ export function useAdMob() {
     let sizeListener: { remove: () => void } | null = null;
 
     async function init() {
-      await AdMob.initialize();
+      await AdMob.initialize({
+        maxAdContentRating: MaxAdContentRating.General,
+      });
 
       sizeListener = await AdMob.addListener(
         BannerAdPluginEvents.SizeChanged,
