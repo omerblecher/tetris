@@ -13,8 +13,8 @@ import { useAdMob } from './hooks/useAdMob';
 function GameApp() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { engineRef, displayState, restart, togglePause } = useGameEngine(canvasRef);
-  useAdMob();
   const { score, level, lines, isGameOver, nextPieces, heldPiece, bestScore, isNewPersonalBest } = displayState;
+  useAdMob(isGameOver, isNewPersonalBest);
 
   return (
     <>
