@@ -23,8 +23,8 @@ android {
         applicationId "com.otis.brooke.tetris"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 7
-        versionName "1.6"
+        versionCode 8
+        versionName "1.7"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
              // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.
@@ -45,7 +45,6 @@ repositories {
     flatDir{
         dirs '../capacitor-cordova-android-plugins/src/main/libs', 'libs'
     }
-    maven { url 'https://android-sdk.is.com/' } // ironSource SDK
 }
 
 dependencies {
@@ -60,7 +59,8 @@ dependencies {
     implementation project(':capacitor-cordova-android-plugins')
     implementation 'com.google.android.gms:play-services-ads:23.0.0'
     implementation 'com.google.ads.mediation:inmobi:10.6.7.0'
-    implementation 'com.google.ads.mediation:ironsource:8.0.0.0'
+    // ironSource removed: not reliably child-safe; known source of gambling/casino ads
+    // which violates Google Play Families Policy
     implementation 'com.google.ads.mediation:unity:4.12.4.0'
 }
 

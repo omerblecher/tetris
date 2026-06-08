@@ -50,6 +50,8 @@ export function useAdMob(isGameOver: boolean, isNewPersonalBest: boolean) {
     async function init() {
       await AdMob.initialize({
         maxAdContentRating: MaxAdContentRating.General,
+        tagForChildDirectedTreatment: true,
+        tagForUnderAgeOfConsent: true,
       });
 
       sizeListener = await AdMob.addListener(

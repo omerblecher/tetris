@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
 
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.RequestConfiguration;
+
 public class MainApplication extends Application implements Application.ActivityLifecycleCallbacks {
 
     private AppOpenAdManager appOpenAdManager;
@@ -15,6 +18,18 @@ public class MainApplication extends Application implements Application.Activity
     public void onCreate() {
         super.onCreate();
         registerActivityLifecycleCallbacks(this);
+
+        // Must be set before MobileAds.initialize() and before any ad requests.
+        // TAG_FOR_CHILD_DIRECTED_TREATMENT_TRUE signals COPPA compliance and propagates
+        // to all certified mediation adapters. MAX_AD_CONTENT_RATING_G blocks gambling,
+        // adult, and violence-rated ads — required for Google Play Families Policy.
+        RequestConfiguration config = new RequestConfiguration.Builder()
+                .setTagForChildDirectedTreatment(RequestConfiguration.TAG_FOR_CHILD_DIRECTED_TREATMENT_TRUE)
+                .setMaxAdContentRating(RequestConfiguration.MAX_AD_CONTENT_RATING_G)
+                .build();
+        MobileAds.setRequestConfiguration(config);
+        MobileAds.initialize(this);
+
         appOpenAdManager = new AppOpenAdManager(this);
         appOpenAdManager.loadAd();
     }
